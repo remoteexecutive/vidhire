@@ -1,0 +1,12 @@
+M	functions.php
+M	includes/admin/admin-payments-pricing.php
+M	includes/theme-support.php
+M	includes/views.php
+M	sidebar-blog.php
+M	sidebar-job.php
+M	sidebar-page.php
+M	sidebar-resume.php
+M	sidebar-submit.php
+M	sidebar-user.php
+M	sidebar.php
+M	style.css
