@@ -26,6 +26,6 @@ $server_password = "(radio5)";
 $server_conn     = "mysql";
 $server_type     = "";
 $server_prefix   = "kimai_";
-$language        = "";
+$language        = "en";
 $password_salt   = "MNjfA2jwFjINSMT8ACu3w";
 $defaultTimezone = "America/Chicago";

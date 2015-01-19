@@ -1,3 +1,303 @@
 [19.01.2015 10:22:23] -- begin install ----------------------------------
 [19.01.2015 10:22:24] -- installation finished without error ------------
 [19.01.2015 10:22:28] login: tom as user
+[19.01.2015 10:22:45] login: admin as user
+[19.01.2015 10:22:45] Global role 1 gave true for deb_ext-access.
+[19.01.2015 10:22:45] Global role 1 gave true for ki_invoice-access.
+[19.01.2015 10:22:45] Global role 1 gave true for ki_budget-access.
+[19.01.2015 10:22:45] Global role 1 gave true for adminPanel_extension-access.
+[19.01.2015 10:22:45] Global role 1 gave true for ki_export-access.
+[19.01.2015 10:22:45] Global role 1 gave true for ki_timesheet-access.
+[19.01.2015 10:22:45] Global role 1 gave true for ki_expenses-access.
+[19.01.2015 10:22:45] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:22:45] Global role 1 gave true for core-customer-otherGroup-add.
+[19.01.2015 10:22:45] Global role 1 gave true for core-customer-otherGroup-edit.
+[19.01.2015 10:22:45] Global role 1 gave true for core-project-otherGroup-add.
+[19.01.2015 10:22:45] Global role 1 gave true for core-project-otherGroup-edit.
+[19.01.2015 10:22:45] Global role 1 gave true for core-activity-otherGroup-add.
+[19.01.2015 10:22:45] Global role 1 gave true for core-activity-otherGroup-edit.
+[19.01.2015 10:22:48] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:22:48] KSPI axAction (admin): securityWarning
+[19.01.2015 10:23:05] KSPI axAction (admin): prefs
+[19.01.2015 10:23:50] KSPI axAction (admin): editPrefs
+[19.01.2015 10:23:50] Global role 1 gave true for deb_ext-access.
+[19.01.2015 10:23:50] Global role 1 gave true for ki_invoice-access.
+[19.01.2015 10:23:50] Global role 1 gave true for ki_budget-access.
+[19.01.2015 10:23:50] Global role 1 gave true for adminPanel_extension-access.
+[19.01.2015 10:23:50] Global role 1 gave true for ki_export-access.
+[19.01.2015 10:23:50] Global role 1 gave true for ki_timesheet-access.
+[19.01.2015 10:23:50] Global role 1 gave true for ki_expenses-access.
+[19.01.2015 10:23:50] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:23:50] Global role 1 gave true for core-customer-otherGroup-add.
+[19.01.2015 10:23:50] Global role 1 gave true for core-customer-otherGroup-edit.
+[19.01.2015 10:23:50] Global role 1 gave true for core-project-otherGroup-add.
+[19.01.2015 10:23:50] Global role 1 gave true for core-project-otherGroup-edit.
+[19.01.2015 10:23:50] Global role 1 gave true for core-activity-otherGroup-add.
+[19.01.2015 10:23:50] Global role 1 gave true for core-activity-otherGroup-edit.
+[19.01.2015 10:23:53] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:23:54] KSPI axAction (admin): securityWarning
+[19.01.2015 10:24:18] KSPI axAction (admin): prefs
+[19.01.2015 10:24:55] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:24:55] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-activity-otherGroup-view.
+[19.01.2015 10:24:55] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:24:55] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-customer-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-project-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-activity-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:24:55] Global role 1 gave true for adminPanel_extension-editAdvanced.
+[19.01.2015 10:24:55] Global role 1 gave true for core-customer-otherGroup-view.
+[19.01.2015 10:24:56] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:24:56] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:24:56] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:24:56] Global role 1 gave true for core-project-otherGroup-view.
+[19.01.2015 10:25:02] KSPI axAction (admin): createUser
+[19.01.2015 10:25:03] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:25:03] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:25:03] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:25:03] KSPI axAction (admin): editUser
+[19.01.2015 10:25:42] KSPI axAction (admin): sendEditUser
+[19.01.2015 10:25:42] KSPI axAction (admin): reload_users
+[19.01.2015 10:25:42] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:25:42] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:25:42] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:25:42] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:25:42] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:25:42] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:25:42] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:26:14] KSPI axAction (admin): createUser
+[19.01.2015 10:26:15] KSPI axAction (admin): editUser
+[19.01.2015 10:26:15] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:26:15] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:26:15] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:27:02] KSPI axAction (admin): sendEditUser
+[19.01.2015 10:27:02] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:27:02] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:27:02] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:27:02] KSPI axAction (admin): reload_users
+[19.01.2015 10:27:02] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:27:02] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:27:02] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:27:02] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:30:59] KSPI axAction (admin): add_edit_customer
+[19.01.2015 10:31:59] KSPI axAction (admin): add_edit_CustomerProjectActivity
+[19.01.2015 10:31:59] KSPI axAction (admin): reload_customers
+[19.01.2015 10:31:59] Global role 1 gave true for core-customer-otherGroup-edit.
+[19.01.2015 10:31:59] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:31:59] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:31:59] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:31:59] Global role 1 gave true for core-customer-otherGroup-view.
+[19.01.2015 10:31:59] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:31:59] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:31:59] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:31:59] Global role 1 gave true for core-project-otherGroup-view.
+[19.01.2015 10:31:59] KSPI axAction (admin): reload_projects
+[19.01.2015 10:31:59] Global role 1 gave true for core-project-otherGroup-edit.
+[19.01.2015 10:32:13] KSPI axAction (admin): add_edit_project
+[19.01.2015 10:32:43] KSPI axAction (admin): add_edit_CustomerProjectActivity
+[19.01.2015 10:32:44] KSPI axAction (admin): reload_activities
+[19.01.2015 10:32:44] Global role 1 gave true for core-activity-otherGroup-edit.
+[19.01.2015 10:32:44] KSPI axAction (admin): reload_projects
+[19.01.2015 10:32:44] Global role 1 gave true for core-project-otherGroup-edit.
+[19.01.2015 10:32:44] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:32:44] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:32:44] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:32:44] Global role 1 gave true for core-project-otherGroup-view.
+[19.01.2015 10:32:44] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:32:44] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:32:44] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:32:44] Global role 1 gave true for core-activity-otherGroup-view.
+[19.01.2015 10:35:01] KSPI axAction (admin): sendEditAdvanced
+[19.01.2015 10:35:01] Global role 1 gave true for adminPanel_extension-editAdvanced.
+[19.01.2015 10:35:01] Global role 1 gave true for deb_ext-access.
+[19.01.2015 10:35:01] Global role 1 gave true for ki_invoice-access.
+[19.01.2015 10:35:01] Global role 1 gave true for ki_budget-access.
+[19.01.2015 10:35:01] Global role 1 gave true for adminPanel_extension-access.
+[19.01.2015 10:35:01] Global role 1 gave true for ki_export-access.
+[19.01.2015 10:35:01] Global role 1 gave true for ki_timesheet-access.
+[19.01.2015 10:35:01] Global role 1 gave true for ki_expenses-access.
+[19.01.2015 10:35:01] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:35:01] Global role 1 gave true for core-customer-otherGroup-add.
+[19.01.2015 10:35:01] Global role 1 gave true for core-customer-otherGroup-edit.
+[19.01.2015 10:35:01] Global role 1 gave true for core-project-otherGroup-add.
+[19.01.2015 10:35:01] Global role 1 gave true for core-project-otherGroup-edit.
+[19.01.2015 10:35:01] Global role 1 gave true for core-activity-otherGroup-add.
+[19.01.2015 10:35:01] Global role 1 gave true for core-activity-otherGroup-edit.
+[19.01.2015 10:35:05] Global role 1 gave true for core-customer-otherGroup-view.
+[19.01.2015 10:35:05] Global role 1 gave true for core-project-otherGroup-view.
+[19.01.2015 10:35:05] Global role 1 gave true for core-activity-otherGroup-view.
+[19.01.2015 10:35:05] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:35:05] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:35:05] Global role 1 gave true for adminPanel_extension-editAdvanced.
+[19.01.2015 10:35:05] KSPI axAction (admin): securityWarning
+[19.01.2015 10:35:54] KSPI axAction (admin): editMembershipRole
+[19.01.2015 10:36:06] KSPI axAction (admin): editMembershipRole
+[19.01.2015 10:36:06] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:36:06] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:36:06] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:37:53] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:37:53] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:37:53] KSPI axAction (admin): startRecord
+[19.01.2015 10:37:54] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:37:54] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:07] KSPI axAction (admin): stopRecord
+[19.01.2015 10:39:07] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:39:07] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:07] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:39:07] Global role 1 gave true for ki_timesheets-otherEntry-otherGroup-add.
+[19.01.2015 10:39:07] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:39:07] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:39:07] E_NOTICE Undefined offset: 1 @/home/vidhire/public_html/1/extensions/ki_timesheets/floaters.php line 191
+[19.01.2015 10:39:07] E_NOTICE Undefined offset: 1 @/home/vidhire/public_html/1/extensions/ki_timesheets/floaters.php line 192
+[19.01.2015 10:39:08] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:39:08] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:39:08] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:14] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:39:15] KSPI axAction (admin): budgets
+[19.01.2015 10:39:15] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:15] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:39:15] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:42] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:39:42] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:39:42] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:39:42] timeEntry_create
+[19.01.2015 10:39:42] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:39:42] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:47] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:47] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:39:47] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:55] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:39:55] KSPI axAction (admin): startRecord
+[19.01.2015 10:39:55] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:39:56] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:39:56] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:39:56] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:39:56] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:13] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:40:13] KSPI axAction (admin): startRecord
+[19.01.2015 10:40:13] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:40:13] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:13] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:40:13] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:40:13] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:19] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:40:19] Global role 1 gave true for ki_timesheets-otherEntry-otherGroup-add.
+[19.01.2015 10:40:19] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:40:19] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:40:21] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:40:21] Global role 1 gave true for ki_timesheets-otherEntry-otherGroup-add.
+[19.01.2015 10:40:21] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:40:21] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:40:22] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:40:22] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:40:22] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:40:22] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:23] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:40:23] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:25] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:40:26] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:40:26] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:26] KSPI axAction (admin): budgets
+[19.01.2015 10:40:26] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:40:29] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:40:29] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:40:29] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:40:29] timeEntry_create
+[19.01.2015 10:40:30] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:40:30] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:41:19] KSPI axAction (admin): reload_activities
+[19.01.2015 10:41:19] Global role 1 gave true for core-activity-otherGroup-edit.
+[19.01.2015 10:41:19] KSPI axAction (admin): saveBuzzerPreselection
+[19.01.2015 10:41:37] KSPI axAction (admin): add_edit_activity
+[19.01.2015 10:42:11] KSPI axAction (admin): add_edit_CustomerProjectActivity
+[19.01.2015 10:42:11] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:42:11] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:42:11] KSPI axAction (admin): reload_activities
+[19.01.2015 10:42:11] Global role 1 gave true for core-activity-otherGroup-edit.
+[19.01.2015 10:42:15] KSPI axAction (admin): saveBuzzerPreselection
+[19.01.2015 10:42:19] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:42:20] KSPI axAction (admin): startRecord
+[19.01.2015 10:42:20] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:42:20] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:42:20] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:42:20] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:42:20] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:43:28] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:43:28] KSPI axAction (admin): startRecord
+[19.01.2015 10:43:28] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:43:28] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:43:28] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:43:28] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:43:28] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:43:34] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:43:34] Global role 1 gave true for ki_timesheets-otherEntry-otherGroup-add.
+[19.01.2015 10:43:34] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:43:34] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:43:34] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:43:35] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:43:35] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:43:49] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:43:49] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:43:49] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:43:49] timeEntry_create
+[19.01.2015 10:43:49] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:43:49] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:43:58] KSPI axAction (admin): reload
+[19.01.2015 10:45:12] Round 0 to 0 with 1
+[19.01.2015 10:45:12] Round 1 to 1 with 1
+[19.01.2015 10:46:13] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:46:13] KSPI axAction (admin): startRecord
+[19.01.2015 10:46:13] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:46:13] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:46:13] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:46:13] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:46:13] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:46:23] KSPI axAction (admin): startRecord
+[19.01.2015 10:46:23] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:46:24] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:46:24] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:46:24] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:46:24] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:46:24] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:46:26] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:46:26] Global role 1 gave true for ki_timesheets-otherEntry-otherGroup-add.
+[19.01.2015 10:46:26] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:46:26] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:46:27] KSPI axAction (admin): reload_activities_options
+[19.01.2015 10:46:27] KSPI axAction (admin): bestFittingRates
+[19.01.2015 10:46:27] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:47:08] KSPI axAction (admin): add_edit_timeSheetEntry
+[19.01.2015 10:47:08] Global role 1 gave true for ki_timesheets-editRates.
+[19.01.2015 10:47:09] Global role 1 gave true for ki_timesheets-ownEntry-add.
+[19.01.2015 10:47:09] timeEntry_create
+[19.01.2015 10:47:09] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:47:09] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:47:18] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:47:18] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-customer-otherGroup-view.
+[19.01.2015 10:47:18] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:47:18] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-project-otherGroup-view.
+[19.01.2015 10:47:18] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:47:18] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-activity-otherGroup-view.
+[19.01.2015 10:47:18] KSPI axAction (admin): refreshSubtab
+[19.01.2015 10:47:18] Global role 1 gave true for core-group-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-user-otherGroup-view.
+[19.01.2015 10:47:18] Global role 1 gave true for core-activity-otherGroup-view.
+[19.01.2015 10:47:23] KSPI axAction (admin): reload
+[19.01.2015 10:47:23] KSPI axAction (admin): reload
+[19.01.2015 10:48:43] KSPI axAction (admin): startRecord
+[19.01.2015 10:48:43] KSPI axAction (admin): setTimeframe
+[19.01.2015 10:48:44] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:48:44] Global role 1 gave true for ki_timesheets-showRates.
+[19.01.2015 10:48:44] KSPI axAction (admin): reload_timespan
+[19.01.2015 10:48:44] KSPI axAction (admin): reload_timeSheet
+[19.01.2015 10:48:44] Global role 1 gave true for ki_timesheets-showRates.
