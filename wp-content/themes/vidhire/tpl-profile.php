@@ -55,6 +55,8 @@ if(!empty($_POST['submit'])) {
 			?>
 
 			<?php do_action( 'appthemes_notices' ); ?>
+                        
+                               
 
 				<form name="profile" id="your-profile" action="" method="post" class="main_form" autocomplete="off">
 					
@@ -144,7 +146,9 @@ if(!empty($_POST['submit'])) {
 						<input type="hidden" name="user_id" id="user_id" value="<?php echo $user_ID; ?>" />
 						<input type="submit" class="submit" name="submit" value="<?php _e('Update Profile &raquo;', APP_TD)?>" />
 					</p>
-				</form>
+				
+                                         <!--?php echo do_shortcode('[avatar user="4"]');?-->
+                                </form>
 
 		</div><!-- end section_content -->
 

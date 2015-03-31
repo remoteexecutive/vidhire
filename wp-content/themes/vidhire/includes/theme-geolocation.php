@@ -305,7 +305,7 @@ function jr_radial_search($location, $radius, $address_array = '') {
 }
 
 // Shows the map on single job listings
-function jr_job_map() {
+/*function jr_job_map() {
 	global $post;
 
 	$title = str_replace('"', '&quot;', wptexturize($post->post_title));
@@ -317,7 +317,7 @@ function jr_job_map() {
 
 	<div id="job_map" style="height: 300px; display:none;"></div>
 	<script type="text/javascript">
-	/* <![CDATA[ */
+	/* <![CDATA[ 
 		jQuery.noConflict();
 		(function($) {
 
@@ -365,11 +365,11 @@ function jr_job_map() {
 
 			});
 		})(jQuery);
-	/* ]]> */
+	/* ]]> 
 	</script>
 	<?php
 
-}
+}*/
 
 function jr_radius_dropdown() {
 	global $app_abbr;

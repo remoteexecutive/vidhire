@@ -19,7 +19,7 @@ if ( post_password_required() ) { ?>
 
 <div class="section">
 
-	<div class="section_content section_content_comments">
+	<div class="section_content comment-container">
 
 		<?php appthemes_before_pings(); ?>
 
@@ -43,8 +43,12 @@ if ( post_password_required() ) { ?>
 
 		<?php if ( have_comments() ) : ?>
 
+                        <!--
 			<h2><?php comments_number(__('No Responses', APP_TD), __('One Response', APP_TD), __('% Responses', APP_TD) );?> <?php _e('to', APP_TD); ?> &#8220;<?php the_title(); ?>&#8221;</h2>
-
+                        -->
+                        
+                        <h2 class="comment-header">Discussions</h2>
+                        
 			<ol id="comment-list" class="commentlist">
 
 				<?php appthemes_list_comments(); ?>

@@ -11,7 +11,7 @@
  *
  */
 
-add_action( 'jr_display_login_form', 'jr_login_form', 10, 2 ,'http://singularityteam.com/11/register','register');
+//add_action( 'jr_display_login_form', 'jr_login_form', 10, 2 ,'http://singularityteam.com/11/register','register');
 
 function jr_login_form( $action = '', $redirect = '' ) {
 	global $posted;

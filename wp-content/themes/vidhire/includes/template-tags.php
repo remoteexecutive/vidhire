@@ -90,7 +90,7 @@ function the_job_edit_link( $job_id = 0, $text = '' ) {
 		return;
 
 	if( empty( $text ) )
-		$text = __( 'Edit&nbsp;&rarr;', APP_TD );
+		$text = __( 'Edit', APP_TD );
 
 	echo html( 'a', array(
 		'class' => 'job-edit-link',

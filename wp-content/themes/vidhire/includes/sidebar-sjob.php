@@ -1,4 +1,4 @@
-<?php if ( JR_Job_Submit_Page::get_id() ) : ?>
+<?php if ( JR_Job_Submit_Page::get_id()) : ?>
 
 	<li class="widget widget-submit">
 		
@@ -27,13 +27,4 @@
 
 	</li>
 
-	<?php if ( current_user_can( 'can_submit_resume' ) && is_page(JR_Dashboard_Page::get_id()) ): ?>
-<li class="widget widget_user_info widget_latest_jobs">
-  
-    <?php the_widget('JR_Widget_Recent_Jobs','title=Latest Jobs'); ?>
-  
-</li>
-
-	<?php endif; ?>
-
-<?php endif; ?>
+<?php endif; 

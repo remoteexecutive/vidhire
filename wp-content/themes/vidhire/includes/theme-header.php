@@ -137,7 +137,8 @@ $items .= '"><a href="'.get_post_type_archive_link('job_listing').'">Jobs</li>';
 	if ( jr_resume_is_visible() || jr_user_resume_visibility() ) :
 		$items .= '<li class="right ';
 		if (is_post_type_archive('resume')) $items .= 'current_page_item';	
-		$items .= '"><a href="'.get_post_type_archive_link('resume').'">'.__('Resumes', APP_TD).'</a></li>';
+		//$items .= '"><a href="'.get_post_type_archive_link('resume').'">'.__('Resumes', APP_TD).'</a></li>';
+                $items .= '"></li>';
 	endif;
 	
 	if ( JR_Job_Submit_Page::get_id() && (is_user_logged_in() && current_user_can('can_submit_job')) ) :

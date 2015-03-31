@@ -24,7 +24,7 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 		<div class="section_content">
 		
 			<?php 
-				if (isset($_GET['delete_resume']) && is_numeric($_GET['delete_resume'])) :
+				/*if (isset($_GET['delete_resume']) && is_numeric($_GET['delete_resume'])) :
 			
 					if (isset($_GET['confirm'])) :
 
@@ -34,16 +34,16 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 						global $user_ID;
 	
 						if ($post_to_remove->ID==$post_id && $post_to_remove->post_author==$user_ID) :
-							wp_delete_post($post_to_remove->ID);
+							wp_delete_post($post_to_remove->ID,true);
 	
 							$message = __('Resume deleted.',APP_TD);
 						endif;
 						
-						$activeTab = 1;
+						$activeTab = 2;
 	
 					endif;
 					
-				endif;
+				endif;*/
 				
 				if (isset($_GET['toggle_visibility']) && is_numeric($_GET['toggle_visibility'])) :
 					
@@ -281,7 +281,16 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 									<td class="center"><?php echo $job_views; ?></td>
 									<td class="center"><?php echo jr_post_statuses_i18n($my_query->post->post_status); ?></td>
 									
-									<td class="actions"><a href="<?php echo add_query_arg('edit', $my_query->post->ID, get_permalink( JR_Resume_Edit_Page::get_id() ) ); ?>"><?php _e('Edit&nbsp;&rarr;',APP_TD); ?></a>&nbsp;<a href="<?php echo add_query_arg('toggle_visibility', $my_query->post->ID); ?>"><?php if ($my_query->post->post_status=='private') _e('Publish',APP_TD); else _e('Hide',APP_TD); ?></a>&nbsp;<a href="<?php echo add_query_arg('delete_resume', $my_query->post->ID); ?>" class="delete-resume"><?php _e('Delete',APP_TD); ?></a></td>
+									<td class="actions">
+                                                                            <a href="<?php echo add_query_arg('edit', $my_query->post->ID, get_permalink( JR_Resume_Edit_Page::get_id() ) ); ?>"><?php _e('Edit&nbsp;&rarr;',APP_TD); ?></a>
+                                                                            &nbsp;
+                                                                            <a href="<?php echo add_query_arg('toggle_visibility', $my_query->post->ID); ?>"><?php if ($my_query->post->post_status=='private') _e('Publish',APP_TD); else _e('Hide',APP_TD); ?></a>
+                                                                            &nbsp;
+                                                                            <!--
+                                                                            <a href="<?php echo add_query_arg('delete_resume', $my_query->post->ID); ?>" class="delete-resume"><?php _e('Delete',APP_TD); ?></a>
+                                                                            -->
+                                                                            <a href="<?php echo $my_query->post->ID; ?>" class="delete-resume"><?php _e('Delete',APP_TD); ?></a>
+                                                                        </td>
 									
 								</tr>
 								<?php 
@@ -350,7 +359,7 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 		});
 		jQuery('ul.display_section li a:eq(<?php echo $activeTab; ?>)').click();
 		
-		jQuery('a.delete-resume').click(function(){
+		/*jQuery('a.delete-resume').click(function(){
 			var answer = confirm("<?php _e('Are you sure you want to delete this resume? This action cannot be undone.',APP_TD); ?>")
 			if (answer){
 				jQuery(this).attr('href', jQuery(this).attr('href') + '&confirm=true');
@@ -359,7 +368,7 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 			else{
 				return false;
 			}
-		});
+		});*/
 	// ]]>
 	</script>
 
@@ -367,4 +376,4 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 
 </div><!-- end main content -->
 
-<?php if (get_option('jr_show_sidebar')!=='no') get_sidebar('user'); ?>
+<?php if (get_option('jr_show_sidebar')!=='no') get_sidebar('job'); ?>

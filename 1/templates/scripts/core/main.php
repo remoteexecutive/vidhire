@@ -5,7 +5,7 @@
     <meta name="robots" value="noindex,nofollow" />
 
     <title><?php echo isset($this->kga['user']) ? $this->escape($this->kga['user']['name']) : $this->escape($this->kga['customer']['name'])?> - Kimai</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Default Stylesheets -->
     <link rel="stylesheet" href="../skins/<?php echo $this->escape($this->kga['conf']['skin']); ?>/styles.css" type="text/css" media="screen" title="no title" charset="utf-8" />

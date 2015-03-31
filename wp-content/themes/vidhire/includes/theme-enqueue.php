@@ -55,7 +55,7 @@ function jr_load_scripts() {
 	// used to display small balloon tooltips
     wp_enqueue_script('qtip', get_template_directory_uri().'/includes/js/jquery.qtip.min.js', array('jquery'), '1.0');
 	// appthemes javascript functions
-    wp_enqueue_script('general', get_template_directory_uri().'/includes/js/theme-scripts.js', array('jquery'), '3.0');
+    //wp_enqueue_script('general', get_template_directory_uri().'/includes/js/theme-scripts.js', array('jquery'), '3.0');
     // used to transform tables on mobile devices
 	wp_enqueue_script( 'footable', get_template_directory_uri() . '/includes/js/jquery.footable.js', array( 'jquery' ), '0.1' );
 	

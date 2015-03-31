@@ -1,12 +1,7 @@
-<?php
-	header('Content-type: text/css');
-	$table_header = "../../../skins/standard/grfx/g3_table_header.png";
-	$schraff3 = "../../../skins/standard/grfx/schraff3.png";
-?>
 
 div.ki_export table {
     border-collapse: collapse;
-    font-size: 11px;
+    font-size: 10px;
     color: #363636;
     border-bottom:1px solid #888;
 }
@@ -28,7 +23,7 @@ div.ki_export table thead {
 }
 
 div.ki_export table thead th {
-    background-image: url('<?php echo $table_header; ?>');
+    background-image: url('../../../skins/standard/grfx/g3_table_header.png');
 }
 
 div.ki_export tr.even td,
@@ -119,7 +114,7 @@ div#xptable tr.active td.time {
 }
 
 div#xptable tr.expense td.time {
-    background-image:url('<?php echo $schraff3; ?>');
+    background-image:url('../../../skins/standard/grfx/schraff3.png');
 }
 
 
