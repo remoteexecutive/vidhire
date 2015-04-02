@@ -1,10 +1,4 @@
 <?php if (current_user_can('manage_options')) { ?>
-    <li class="widget widget_user_info myjobs_dashboard_admin">
-
-        <a href="http://vidhire.net/wp-admin/">Admin</a>
-
-    </li>
-
     <?php the_widget('WP_Widget_Recent_Posts'); ?> 
 <?php } ?>
 

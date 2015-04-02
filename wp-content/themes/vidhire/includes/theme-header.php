@@ -8,7 +8,9 @@
  *
  * @since 1.0
  * @uses wp_head or appthemes_header
- *
+ * Editable:
+ * You can change this theme-header.php
+ * There are 3 theme-header.phps and this is the only editable one
  */
 
 add_action( 'wp_before_admin_bar_render', 'jr_remove_admin_bar_links' );
@@ -124,6 +126,14 @@ function jr_top_nav_links( $items = '', $menu = null) {
 $items .= '"><a href="'.get_post_type_archive_link('job_listing').'">Jobs</li>';
      	
 		}
+                
+                if (is_user_logged_in() && current_user_can('manage_options')) {
+                $items .= '<li class="right ';
+                if (is_post_type_archive('resume'))
+                    $items .= 'current_page_item';
+                $items .= '"><a href="http://vidhire.net/wp-admin/">Admin</a></li>';
+            }
+                
 		endif;
 		
 	} else {

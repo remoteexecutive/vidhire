@@ -807,7 +807,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                         <?php
                                         foreach ($attachments as $attachment_id => $attachment) {
                                             if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) {
-                                                echo '<tr><td>' . wp_get_attachment_link($attachment_id) . '</td><td><a href="' . get_delete_post_link($attachment_id, '', true) . '">Delete</a></td></tr>';
+                                                echo '<tr><td>' . wp_get_attachment_link($attachment_id) . '</td></tr>';
                                                 //echo do_shortcode('[embeddoc url="'.wp_get_attachment_url($attachment_id).'" viewer="microsoft"]'); 
                                             } else {
                                                 echo wp_get_attachment_link($attachment_id);

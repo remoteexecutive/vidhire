@@ -64,7 +64,7 @@
 
                 <div class="job-details-title">
                     <div class="title">
-                        <strong><a class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></strong>&nbsp;&nbsp;<?php jr_get_custom_taxonomy($post->ID, 'job_type', 'jtype') ?>
+                        <strong><a target="_blank" class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></strong>&nbsp;&nbsp;<?php jr_get_custom_taxonomy($post->ID, 'job_type', 'jtype') ?>
                     </div>  
 
                 </div> 
@@ -81,10 +81,6 @@
                                  <strong><?php jr_location(); ?></strong>
                                                              </div>        
                         -->      
-
-
-
-
                     </div>
 
             </li>
@@ -159,7 +155,7 @@
                         <div class="job-details-title">
                             <div class="title">
                                 <strong>
-                                    <a class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <a target="_blank" class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </strong>
                                 <?php jr_get_custom_taxonomy($post->ID, 'job_type', 'jtype'); ?>              
                             </div><!--title-->  
@@ -278,7 +274,7 @@ AND post.post_title IN ('" . implode('\',\' ', $employer_jobs) . "'))a GROUP BY 
                         <div class="job-details-title">
                             <div class="title">
                                 <strong>
-                                    <a class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                    <a target="_blank" class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                 </strong>
                                 <?php jr_get_custom_taxonomy($post->ID, 'job_type', 'jtype'); ?>
                             </div><!--title-->  

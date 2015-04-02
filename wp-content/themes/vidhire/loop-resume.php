@@ -116,7 +116,7 @@ global $app_abbr;
 
 
                             <div class="title">
-                                <strong><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></strong>             
+                                <strong><a target="_blank" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></strong>             
 
 
                                 <div class="location">
@@ -134,7 +134,7 @@ global $app_abbr;
                                     if ($terms) :
                                         _e('', APP_TD);
                                         /* echo '<a href="'.get_term_link($terms[0]->slug, 'resume_category').'">' . $terms[0]->name .'</a>'; */
-                                        echo '<a class="job_applying_for_link" href="/jobs/' . $terms[0]->slug . '">' . $terms[0]->name . '</a>';
+                                        echo '<a target="_blank" class="job_applying_for_link" href="/jobs/' . $terms[0]->slug . '">' . $terms[0]->name . '</a>';
                                     endif;
                                     ?>
                                     <br />
