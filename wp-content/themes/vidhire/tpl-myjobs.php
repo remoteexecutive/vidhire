@@ -43,6 +43,7 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
             -->
             <li id="myjobs_tab_jobs"><a href="#employer_jobs" class="noscroll"><?php _e('Jobs', APP_TD); ?></a></li>
             <li id="myjobs_tab_job_discussions"><a href="#employer_job_discussions" class="noscroll"><?php _e('Job Discussions', APP_TD); ?></a></li>
+            <li id="myjobs_tab_employer_test_tab"><a href="#employer_test_tab" class="noscroll"><?php _e('Tests', APP_TD); ?></a></li>
 
             <?php if ('pack' == $jr_options->plan_type && jr_charge_job_listings()) : ?><li><a href="#packs" class="noscroll"><?php _e('Job Packs', APP_TD); ?></a></li><?php endif; ?>
             <?php if ($can_subscribe) : ?><li><a href="#subscriptions" class="noscroll"><?php _e('Subscriptions', APP_TD); ?></a></li><?php endif; ?>
@@ -52,6 +53,14 @@ $can_subscribe = jr_current_user_can_subscribe_for_resumes();
 
         </ul>
 
+        <div id="employer_test_tab" class="myjobs_tab_section">
+            <?php 
+            new WpProQuiz_Controller_Admin();
+           
+            ?>
+        </div>
+            
+        
         <div id="employer_applicant_discussions" class="myjobs_tab_section">
             <?php
             global $wpdb;

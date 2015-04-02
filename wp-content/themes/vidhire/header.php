@@ -14,9 +14,11 @@
     </div><!-- end inner -->
 
 </div><!-- end topNav -->
-
+<?php if (is_user_logged_in()) { ?> 
 <div id="header">
-
+<?php } else { ?>
+<div id="header" style="visibility:hidden;">    
+<?php }?>
     <div class="inner">
 
         <div class="logo_wrap">

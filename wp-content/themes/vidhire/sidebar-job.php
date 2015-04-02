@@ -1,5 +1,10 @@
-<div id="sidebar">
 
+<?php if (is_user_logged_in()) { ?>
+<div id="sidebar">
+<?php } else { ?>
+<div id="sidebar" style="visibility: hidden;">
+<?php }?>
+    
 	<ul class="widgets">
 
 		<?php appthemes_before_sidebar_widgets( 'job_listing' ); ?>

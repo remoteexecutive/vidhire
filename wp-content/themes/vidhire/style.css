@@ -2832,7 +2832,7 @@ form.main_form label.error {
 .job-details-title a{
     color:#000;
     text-decoration:none;
-    font-size:18px !important;
+    font-size:26px !important;
 }
 
 .job-details {
@@ -3947,4 +3947,17 @@ img.logo {
 
 .apply_for_job_div {
     display:none;
+}
+
+.section_footer {
+    background-color:#F9FAE1 !important;
+    height: 62px;
+}
+
+.section_footer li a {
+ 
+}
+
+.job_company_logo img {
+    border: none !important;
 }

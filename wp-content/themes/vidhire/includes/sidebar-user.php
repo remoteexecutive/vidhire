@@ -2,7 +2,7 @@
     <?php the_widget('WP_Widget_Recent_Posts'); ?> 
 <?php } ?>
 
-<?php if (current_user_can('can_submit_job')) { ?>
+<?php if (current_user_can('can_submit_job') || current_user_can('manage_options')) { ?>
     <li class="widget widget_user_info myjobs_dashboard_admin">
 
         <?php
@@ -20,7 +20,7 @@
     </li>
 <?php } ?>
 
-<?php if (is_user_logged_in() && current_user_can('can_submit_job')) : ?>
+<?php if (is_user_logged_in() && current_user_can('can_submit_job') || is_user_logged_in() && current_user_can('manage_options')) : ?>
     <li class="widget widget-nav">
 
         <ul class="display_section">
@@ -221,7 +221,7 @@ AND post.post_name IN ('" . implode('\',\' ', $employer_jobs) . "'))a GROUP BY a
     <?php endif; ?>
 <?php endif; ?>  
 
-<?php if (current_user_can('can_submit_job')) { ?> 
+<?php if (current_user_can('can_submit_job') || current_user_can('manage_options')) { ?> 
     <li class="widget widget_recent_comments">
         <?php
         global $wpdb;

@@ -12,16 +12,19 @@
 
             <?php appthemes_stats_update($post->ID); //records the page hit ?>
 
+
+            
             <div class="section_header">
 
                 <?php appthemes_before_post_title(); ?>
 
                 <?php if (has_post_thumbnail()) { ?>
                     <div class="job_company_logo">
-                        <?php the_post_thumbnail(array(650, 1535)); ?>
+                        <?php the_post_thumbnail(array(300, 1535)); ?>
                     </div>
                 <?php } ?>
-
+                <br />
+                <br />
                 <div class="job-details-title">
                     <div class="title">
                         <strong><a class="job-title-color" href="<?php the_permalink(); ?>"><?php the_title(); ?></a></strong>&nbsp;&nbsp;<?php jr_get_custom_taxonomy($post->ID, 'job_type', 'jtype') ?>
@@ -63,10 +66,6 @@
                     } else {
                         $format = '<a href="%s">%s</a>';
                     }
-
-                    $author = get_user_by('id', $post->post_author);
-                    if ($author && $link = get_author_posts_url($author->ID, $author->user_nicename))
-                        echo sprintf($format, $link, $author->display_name);
                     ?>
 
                 </div><!--job-details-->
@@ -91,19 +90,22 @@
                     <?php echo do_shortcode('[video height="355" width="658" src="' . wptexturize(get_post_meta($post->ID, 'job_listing_video', true)) . '" ]'); ?>
                 </div>
 
+                <?php
+                $author = get_user_by('id', $post->post_author);
+                if ($author && $link = get_author_posts_url($author->ID, $author->user_nicename))
+                    echo sprintf($format, $link, $author->display_name);
+
+                // load up theme-actions.php and display the apply form
+                //do_action('job_footer');
+                ?>
+
                 <?php appthemes_after_post_content(); ?>
 
                 <div class="clear"></div>
 
-
-
             </div><!--section content-->
-
-            <?php
-            // load up theme-actions.php and display the apply form
-            //do_action('job_footer');
-            ?>
-
+            <br />
+            <br />
             <ul class="section_footer" >
 
                 <?php if ($url = get_post_meta($post->ID, 'job_url', true)) : ?>
@@ -125,7 +127,7 @@
                     <?php } ?>
                 <?php endif; ?>
 
-                <?php if (is_user_logged_in() && current_user_can('can_submit_resume')) : $starred = (array) get_user_meta(get_current_user_id(), '_starred_jobs', true); ?>
+                <?php if (current_user_can('can_submit_resume')) : $starred = (array) get_user_meta(get_current_user_id(), '_starred_jobs', true); ?>
                     <?php if (!in_array($post->ID, $starred)) : ?>
                         <li class="star"><a href="<?php echo add_query_arg('star', 'true', get_permalink()); ?>" class="star"><?php _e('Star Job', APP_TD); ?></a></li>
                     <?php else : ?>
@@ -181,7 +183,7 @@
                             } else {
                                 $get_resumes = $wpdb->get_results('SELECT * FROM wp_posts WHERE post_author in (' . get_current_user_id() . ') AND post_type in ("resume")', ARRAY_A);
                             }
-                            
+
                             foreach ($get_resumes as $resumes) {
                                 ?>
                                 <option value="<?php echo $resumes['ID']; ?>"><?php echo $resumes['post_title']; ?></option>
@@ -254,11 +256,6 @@ endif;
 ?>
 
 <div class="clear"></div>
-
-
-
-
-</div>
 
 
 
