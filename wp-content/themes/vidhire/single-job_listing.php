@@ -12,15 +12,13 @@
 
             <?php appthemes_stats_update($post->ID); //records the page hit ?>
 
-
-            
             <div class="section_header">
 
                 <?php appthemes_before_post_title(); ?>
 
                 <?php if (has_post_thumbnail()) { ?>
                     <div class="job_company_logo">
-                        <?php the_post_thumbnail(array(300, 1535)); ?>
+                        <?php the_post_thumbnail(array(350, 1535)); ?>
                     </div>
                 <?php } ?>
                 <br />
@@ -145,7 +143,7 @@
 
                 <?php if (function_exists('selfserv_sexy')) { ?><li class="sexy share"><a href="#share_form" class="share"><?php _e('Share Job', APP_TD); ?></a></li><?php } ?>
 
-                <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
+                <?php if (get_the_author_meta('ID') == get_current_user_id() && current_user_can('manage_options') || get_the_author_meta('ID') == get_current_user_id() && current_user_can('can_submit_job')) : ?>
                     <li class="edit-job"><?php
                         //the_job_edit_link(); 
 
@@ -167,8 +165,6 @@
                         ?></li>
                 <?php endif; ?>
             </ul>
-            <br />
-            <br />
             <div class="apply_for_job_div">
                 <?php if (is_user_logged_in() && current_user_can('can_submit_resume') || is_user_logged_in() && current_user_can('manage_options')) { ?>
                     <form class="apply_for_job_form">    
@@ -227,7 +223,7 @@
                 <div id="map_wrap" style="width:100%;height:250px;"><div id="geolocation-map" style="width:100%;height:250px;"></div></div>
             </div>
 
-        </div>
+        </div> 
 
         <?php comments_template(); ?>
 
@@ -249,14 +245,10 @@
 
 </div><!--end section-->
 
-<?php
+<!--?php
 if (get_option('jr_show_sidebar') !== 'no') :
     get_sidebar('job');
 endif;
-?>
+?-->
 
 <div class="clear"></div>
-
-
-
-

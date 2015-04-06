@@ -3947,6 +3947,8 @@ img.logo {
 
 .apply_for_job_div {
     display:none;
+    background-color:#FDFFDB;
+    padding:15px;
 }
 
 .section_footer {
@@ -3960,4 +3962,9 @@ img.logo {
 
 .job_company_logo img {
     border: none !important;
+}
+
+.single-job_listing #header, .single-job_listing #topNav {
+    visibility:hidden;
+    //display:none;
 }

@@ -23,10 +23,14 @@ body {
 #header {	
     /*border-top: 1px solid rgba(255,255,255,0.1);*/
     /*background: #335588 url(../images/160-dark-blue.png) repeat-x bottom;*/
+    background: url(../images/vidhire_header_background.jpg) no-repeat;
+    background-position-y: 600%;
+    background-position-x: -8.7%;
     height: 150px;
 }
 #header .inner {
-    background: url(../images/style-pro-blue/header.png) no-repeat left top;
+    /*background: url(../images/vidhire_header_background.jpg) no-repeat;*/
+    /*background: url(../images/vidhire_header_background_2.jpg) no-repeat 108%;*/
     padding: 40px 0 65px;
 }
 #header .logo_wrap {
@@ -123,6 +127,7 @@ div#content .inner {
     -moz-border-radius: 6px;
     //background: url(../images/style-pro-blue/pixel.png) repeat-y 690px;
     background-image: -webkit-linear-gradient(right, #001F40, #001F40 31%,transparent 0%);
+    
 }
 
 .page-template-tpl-login div#content .inner {
@@ -142,9 +147,9 @@ div#content .inner {
 }
 
 .page-template-tpl-login .section_content{
-      padding: 0 0 10px;
-  border-top: 0px transparent ;
-  /* border-bottom: 1px solid #E4E4E4; */
+    padding: 0 0 10px;
+    border-top: 0px transparent ;
+    /* border-bottom: 1px solid #E4E4E4; */
 }
 
 .section, #searchform {
@@ -195,6 +200,7 @@ div.section_content {
 #mainContent {	
     float: left;
     display: inline;
+    
 }
 #sidebar {
     float: right;
