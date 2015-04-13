@@ -36,4 +36,4 @@
 
 </div><!-- end main content -->
 
-<?php if (get_option('jr_show_sidebar')!=='no') get_sidebar('submit'); ?>
+<!--?php if (get_option('jr_show_sidebar')!=='no') get_sidebar('submit'); ?-->

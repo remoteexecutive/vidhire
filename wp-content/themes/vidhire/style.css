@@ -1453,6 +1453,12 @@ ol#comment-list img.avatar {
     -webkit-border-radius: 6px;
     border-radius: 6px; /* optional rounded corners for browsers that support it */
 }
+
+.single-job_listing ol#comment-list img.avatar, .single-resume ol#comment-list img.avatar {
+    position: relative;
+    top: -5px;
+}
+
 ol#comment-list li {
     margin: 0;
     padding: 8px 0;
@@ -2837,7 +2843,7 @@ form.main_form label.error {
 
 .job-details {
     font-size:13px;
-
+    color: #E34F00;
 }
 
 .job-details a{
@@ -3065,7 +3071,7 @@ div.widget_recent_entries ul{
 .job-details-title .jtype {
     font-size: 15px !important;
     font-weight: bold;
-    color: #A0A0A0;
+    color: #E34F00;
     font-style: italic; 
 }
 
@@ -3949,6 +3955,7 @@ img.logo {
     display:none;
     background-color:#FDFFDB;
     padding:15px;
+    float:right;
 }
 
 .section_footer {
@@ -3957,7 +3964,7 @@ img.logo {
 }
 
 .section_footer li a {
- 
+
 }
 
 .job_company_logo img {
@@ -3965,6 +3972,67 @@ img.logo {
 }
 
 .single-job_listing #header, .single-job_listing #topNav {
-    visibility:hidden;
+    display:none;
     //display:none;
 }
+
+.page-template-tpl-edit-job #topNav, .page-template-tpl-edit-job #header {
+    display:none;
+}
+
+#single-job-header .user_options {
+
+}
+
+#single-job-header .user-edit {
+    position: absolute;
+    left: 12%;
+    top: 33px;
+}
+
+#single-job-header .admin-edit {
+    position: absolute;
+    left: 18%;
+    top: 33px;
+}
+
+#single-job-header .apply_for_job {
+    position: absolute;
+    right: 37%;
+    top: 28px;
+}
+
+#single-job-header {
+    display:none
+}
+
+.single-job_listing #single-job-header {
+    background: url(http://vidhire.net/wp-content/uploads/2015/04/job-image-burst-5.jpg) 44% 48% no-repeat;
+    margin-bottom: 40px;
+    display:block;
+}
+
+.page-template-tpl-edit-job #single-job-header{
+    background: url(http://vidhire.net/wp-content/uploads/2015/04/job-image-burst-5.jpg) 44% 48% no-repeat;
+    margin-bottom: 40px;
+    display:block;
+}
+
+.page-template-tpl-edit-job .job_save {
+    position: absolute;
+    left: 12%;
+    top: 33px;
+}
+
+.page-template-tpl-edit-job .job_view {
+    position: absolute;
+    left: 18%;
+    top: 33px;
+} 
+
+.page-template-tpl-edit-job .job_dashboard {
+    position: absolute;
+    left: 24%;
+    top: 33px;
+} 
+

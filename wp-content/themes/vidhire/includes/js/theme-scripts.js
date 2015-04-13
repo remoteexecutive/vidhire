@@ -177,10 +177,10 @@ jQuery(document).ready(function() {
     jQuery('ul.section_footer').show();
 
     // add jquery lazy load for images 
-    jQuery('img:not(.load)').lazyload({
+    /*jQuery('img:not(.load)').lazyload({
         effect:'fadeIn',
         placeholder: jobroller_params.lazyload_placeholder
-    });
+    });*/
 	
 	jQuery('textarea.grow').autogrow();
 

@@ -95,11 +95,11 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     <input class="resume_id" type="hidden" value="<?php echo $post->ID; ?> "/>
                     <input class="employer_id" type="hidden" value="<?php echo $job_owner; ?> "/>
                     <h1 class="title resume-title"><span><?php the_title(); ?></span></h1>
-                    
-                    <?php 
+
+                    <?php
                     echo '<div class="posted-by-container">';
-                        if ($posted_by = get_the_author_meta('display_name')):
-                        echo  __('Posted by: ', APP_TD);
+                    if ($posted_by = get_the_author_meta('display_name')):
+                        echo __('Posted by: ', APP_TD);
                         echo '<strong>' . wptexturize($posted_by) . '</strong> on ';
                         echo the_date();
                         echo '</div>';
@@ -234,29 +234,29 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     ?>
 
                     <p class="meta"><?php
-            /* echo __('Resume of ',APP_TD) . '<strong>' .wptexturize(get_the_author_meta('display_name')) . '</strong>'; */
+                        /* echo __('Resume of ',APP_TD) . '<strong>' .wptexturize(get_the_author_meta('display_name')) . '</strong>'; */
 
-            $terms = wp_get_post_terms($post->ID, 'resume_category');
-            $currency = get_post_meta($post->ID, 'currency', true);
+                        $terms = wp_get_post_terms($post->ID, 'resume_category');
+                        $currency = get_post_meta($post->ID, 'currency', true);
 
-            if ($terms) :
-                //echo '<br />';
-                _e(' Applying For: ', APP_TD);
-                echo '<strong>' . $terms[0]->name . '</strong> ';
-            endif;
+                        if ($terms) :
+                            //echo '<br />';
+                            _e(' Applying For: ', APP_TD);
+                            echo '<strong>' . $terms[0]->name . '</strong> ';
+                        endif;
 
-            if ($desired_salary = get_post_meta($post->ID, '_desired_salary', true)) :
-                echo sprintf(__('<br/>Minimum Hourly Rate: <strong>%s %s</strong> ', APP_TD), $desired_salary, $currency);
-            endif;
+                        if ($desired_salary = get_post_meta($post->ID, '_desired_salary', true)) :
+                            echo sprintf(__('<br/>Minimum Hourly Rate: <strong>%s %s</strong> ', APP_TD), $desired_salary, $currency);
+                        endif;
 
-            $desired_position = wp_get_post_terms($post->ID, 'resume_job_type');
-            if ($desired_position) :
-                $desired_position = current($desired_position);
-                echo '<br/>' . sprintf(__('Desired Position Type: <strong>%s</strong><br /> ', APP_TD), $desired_position->name);
-            else :
-                echo '<br/>' . __('Desired Position Type: <strong>Any</strong><br /> ', APP_TD);
-            endif;
-                    ?>
+                        $desired_position = wp_get_post_terms($post->ID, 'resume_job_type');
+                        if ($desired_position) :
+                            $desired_position = current($desired_position);
+                            echo '<br/>' . sprintf(__('Desired Position Type: <strong>%s</strong><br /> ', APP_TD), $desired_position->name);
+                        else :
+                            echo '<br/>' . __('Desired Position Type: <strong>Any</strong><br /> ', APP_TD);
+                        endif;
+                        ?>
 
                         <?php
                         $contact_details = array();
@@ -283,7 +283,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 //echo '<dt class="skype">' . __('Skype', APP_TD) . ':</dt><dd>'
                                     echo __('Skype', APP_TD) . ': ';
                                 ?>											
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <a href="<?php echo 'skype:<strong>' . $contact_details['skype'] . '</strong>'; ?>"><!--img height="20" weight="20" src="<?php bloginfo('template_url') ?>/images/social-skype-button-blue-icon.png" /--><?php echo $contact_details['skype']; ?></a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="<?php echo 'skype:<strong>' . $contact_details['skype'] . '</strong>'; ?>"><!--img height="20" weight="20" src="<?php bloginfo('template_url') ?>/images/social-skype-button-blue-icon.png" /--><?php echo $contact_details['skype']; ?></a>
 
 
                                 <!--script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script-->
@@ -739,22 +739,53 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                                 $company_names = "3rd Last Employment,2nd Last Employment,Most Recent Employment";
 
+                                $company_1_days_worked = $company_1_date_diff->days / 100;
+                                $company_2_days_worked = $company_2_date_diff->days / 100;
+                                $company_3_days_worked = $company_3_date_diff->days / 100;
+
+                                $company_1_days_before_next_job = $company_1_unemployment->days / 100;
+                                $company_2_days_before_next_job = $company_2_unemployment->days / 100;
+                                $company_3_days_before_next_job = $company_3_unemployment->days / 100;
+
+
+
                                 /* Display the Charts */
                                 //Employment Period
                                 echo '<div class="experience">';
                                 echo do_shortcode('[easychart type="vertbarstack" height="400" width="650" title=""  groupcolors="288000,B50404" groupnames="Days Worked,Days Before Next Job" valuenames="' . $company_names . '" group1values="' . $days_worked . '" group2values="' . $unemployment_days . '" ]');
+
+
+                                /* Shortcode Chart for Unemployment Period */
+                                echo do_shortcode('[su_shadow style="simple"][su_box title="Employment Period Evaluation" style="glass" box_color="#000"]
+                                <h2>Days Worked</h2>
+                                [su_progress_bar style="fancy" percent="' . $company_1_days_worked . '" text="Most Recent Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_2_days_worked . '" text="2nd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_3_days_worked . '" text="3rd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                <h2>Days Before Next Job</h2>
+                                [su_progress_bar style="fancy" percent="' . $company_1_days_before_next_job . '" text="Most Recent Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_2_days_before_next_job . '" text="2nd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_3_days_before_next_job . '" text="3rd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [/su_box][/su_shadow]');
+
+
                                 //Start and End Wage
                                 echo do_shortcode('[easychart type="vertbar" height="400" width="650" title=""  groupcolors="0070C0,006AE3" groupnames="Start Wage,End Wage" valuenames="' . $company_names . '" group1values="' . $start_wage . '" group2values="' . $end_wage . '" ]');
                                 echo '</div>';
+
+                                /* Shortcode Chart for Wage */
+                                echo do_shortcode('[su_shadow style="simple"][su_box title="Wage Evaluation" style="glass" box_color="#000"]
+                                <h2>Start Wage</h2>
+                                [su_progress_bar style="fancy" percent="' . $company_1_start_wage . '" text="Most Recent Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_2_start_wage . '" text="2nd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_3_start_wage . '" text="3rd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                <h2>End Wage</h2>
+                                [su_progress_bar style="fancy" percent="' . $company_1_end_wage . '" text="Most Recent Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_2_end_wage . '" text="2nd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $company_3_end_wage . '" text="3rd Last Employment" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [/su_box][/su_shadow]');
                                 ?>
 
-                                <!--
-                                <h2 class="" style="text-align:center;"><span><?php echo "Other Employments and Career Info"; ?></span></h2>
-                                <div class="resume_section">
-                                <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'other_employments', true))); ?>
-                                </div>
-                                <div class="clear"></div>
-                                -->
+
                                 <?php
                                 break;
                             case "education" :
@@ -1156,11 +1187,31 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     <?php
                                     $video_evaluation_values = $get_video_evaluation->confidence_score . ',' . $get_video_evaluation->communication_score . ',' . $get_video_evaluation->fun_factor_score . ',' . $get_video_evaluation->connection_score . ',' . $get_video_evaluation->understanding_score . ',' . $get_video_evaluation->bonus_score;
 
-                                    echo "<div class='video-evaluation-form'>";
+                                    /*echo "<div class='video-evaluation-form'>";
                                     echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" groupcolors="333399" groupnames="Score" valuenames="Confidence,Communication,Enthusiasm,Connection,Understanding,Boost" group1values="' . $video_evaluation_values . '"]');
-                                    echo "</div>";
+                                    echo "</div>";*/
+
+
+                                    $confidence_score = $get_video_evaluation->confidence_score * 20;
+                                    $communication_score = $get_video_evaluation->communication_score * 20;
+                                    $enthusiasm_score = $get_video_evaluation->fun_factor_score * 20;
+                                    $connection_score = $get_video_evaluation->connection_score * 20;
+                                    $understanding_score = $get_video_evaluation->understanding_score * 20;
+                                    $optional_boost_score = $get_video_evaluation->bonus_score * 20;
+                                    $video_evaluation_total = round(($get_video_evaluation->video_evaluation_score / 6 ) * 20);
+
+                                    /* Shortcode Chart for Video Evaluation */
+                                    echo do_shortcode('[su_shadow style="simple"][su_box title="Video Evaluation" style="glass" box_color="#000000"][su_note note_color="#000000" radius="5"]
+                                [su_progress_bar style="fancy" percent="' . $confidence_score . '" text="<strong>Confidence</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $communication_score . '" text="<strong>Communication</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $enthusiasm_score . '" text="<strong>Enthusiasm</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $connection_score . '" text="<strong>Connection</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $understanding_score . '" text="<strong>Understanding</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $optional_boost_score . '" text="<strong>Optional Boost</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_pie percent="' . $video_evaluation_total . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
+                                [/su_note][/su_box][/su_shadow]');
                                     ?>
-                                <?php }; ?>
+                                <?php } ?>
 
                                 <?php
                                 if ($address = get_post_meta($post->ID, 'geo_short_address', true)) :
@@ -1196,7 +1247,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     -->
 
                                     <form class="final-evaluation-form">       
-                                        <h2 class="final-evaluation-heading" style="text-align:left;"><span>Evaluations of <?php the_title(); ?></span></h2>
+                                        <h2 class="final-evaluation-heading" style="text-align:left;"><span>Final Evaluation of <?php the_title(); ?></span></h2>
                                         <?php
                                         global $wpdb, $post;
 
@@ -1382,6 +1433,29 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     echo "<div class='final-evaluation-form'>";
                                     echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" groupcolors="1F5802" groupnames="Score" valuenames="Skills,Education,Career Map,References,V. Interview,Tests,Boost" group1values="' . $evaluation_values . '"]');
                                     echo "</div>";
+
+
+                                    $skills_score = $get_evaluation->skills_score * 20;
+                                    $education_score = $get_evaluation->education_score * 20;
+                                    $career_map_score = $get_evaluation->career_map_score * 20;
+                                    $references_score = $get_evaluation->references_score * 20;
+                                    $video_interview_score = $get_evaluation->video_interview_score * 20;
+                                    $tests_score = $get_evaluation->tests_score * 20;
+                                    $optional_boost_score = $get_evaluation->positive_adjustments_score * 20;
+                                    $final_evaluation_total = round(($get_evaluation->final_evaluation_score / 7) * 20);
+
+                                    /* Shortcode Chart for Final Evaluation */
+
+                                    echo do_shortcode('[su_shadow style="simple"][su_box title="Final Evaluation" style="glass" box_color="#000"]
+                                [su_progress_bar style="fancy" percent="' . $skills_score . '" text="Skills" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $education_score . '" text="Education" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $career_map_score . '" text="Career Map" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $references_score . '" text="References" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $video_interview_score . '" text="Video Interview" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $tests_score . '" text="Tests" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $optional_boost_score . '" text="Optional Boost" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_pie percent="' . $final_evaluation_total . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
+                                [/su_box][/su_shadow]');
                                     ?>
                                 <?php } ?>
                                 <div class="clear"></div>
@@ -1397,52 +1471,131 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     <iframe height="400" width="658" src="<?php echo wptexturize(get_post_meta($post->ID, 'chart', true)); ?>"></iframe>
                                     -->
                                     <h2 class="reference-request-responses-heading"><span>Reference Request Responses</span></h2>
-                                    <?php
-                                    $reference_1 = get_post_meta($post->ID, 'reference_name_1', true);
-                                    $reference_2 = get_post_meta($post->ID, 'reference_name_2', true);
-                                    $reference_3 = get_post_meta($post->ID, 'reference_name_3', true);
+                    <?php
+                    $reference_1 = get_post_meta($post->ID, 'reference_name_1', true);
+                    $reference_2 = get_post_meta($post->ID, 'reference_name_2', true);
+                    $reference_3 = get_post_meta($post->ID, 'reference_name_3', true);
 
-                                    $get_chart_data = $wpdb->get_results($wpdb->prepare("SELECT reference_name,performance,attitude,dependability,team_player,learning_speed,flexibility,creativity FROM wp_references_responses WHERE resume_id in (%d) and reference_name in (%s,%s,%s)", $post->ID, $reference_1, $reference_2, $reference_3), ARRAY_A);
+                    $get_chart_data = $wpdb->get_results($wpdb->prepare("SELECT reference_name,performance,attitude,dependability,team_player,learning_speed,flexibility,creativity FROM wp_references_responses WHERE resume_id in (%d) and reference_name in (%s,%s,%s)", $post->ID, $reference_1, $reference_2, $reference_3), ARRAY_A);
 
-                                    foreach ($get_chart_data as $chart_data) {
-                                        if ($chart_data['reference_name'] == $reference_1) {
-                                            $performance .= $chart_data['performance'];
-                                            $attitude .= $chart_data['attitude'];
-                                            $dependability .= $chart_data['dependability'];
-                                            $team_player .= $chart_data['team_player'];
-                                            $learning_speed .= $chart_data['learning_speed'];
-                                            $flexibility .= $chart_data['flexibility'];
-                                            $creativity .= $chart_data['creativity'];
-                                        }
+                    foreach ($get_chart_data as $chart_data) {
+                        if ($chart_data['reference_name'] == $reference_1) {
+                            $performance .= $chart_data['performance'];
+                            $attitude .= $chart_data['attitude'];
+                            $dependability .= $chart_data['dependability'];
+                            $team_player .= $chart_data['team_player'];
+                            $learning_speed .= $chart_data['learning_speed'];
+                            $flexibility .= $chart_data['flexibility'];
+                            $creativity .= $chart_data['creativity'];
+
+                            $productivy_reference_1 = $chart_data['performance'] * 20;
+                            $attitude_reference_1 = $chart_data['attitude'] * 20;
+                            $dependability_reference_1 = $chart_data['dependability'] * 20;
+                            $team_player_reference_1 = $chart_data['team_player'] * 20;
+                            $learning_speed_reference_1 = $chart_data['learning_speed'] * 20;
+                            $flexibility_reference_1 = $chart_data['flexibility'] * 20;
+                            $creativity_reference_1 = $chart_data['creativity'] * 20;
+                            
+                            $total_reference_1 = round((($chart_data['performance'] + 
+                                                 $chart_data['attitude'] + 
+                                                 $chart_data['dependability'] +
+                                                 $chart_data['team_player'] +
+                                                 $chart_data['learning_speed'] +
+                                                 $chart_data['flexibility'] +
+                                                 $chart_data['creativity']) / 7) * 20) ;
+                        }   
 
 
-                                        if ($chart_data['reference_name'] == $reference_2) {
-                                            $performance .= ',' . $chart_data['performance'];
-                                            $attitude .= ',' . $chart_data['attitude'];
-                                            $dependability .= ',' . $chart_data['dependability'];
-                                            $team_player .= ',' . $chart_data['team_player'];
-                                            $learning_speed .= ',' . $chart_data['learning_speed'];
-                                            $flexibility .= ',' . $chart_data['flexibility'];
-                                            $creativity .= ',' . $chart_data['creativity'];
-                                        }
+                        if ($chart_data['reference_name'] == $reference_2) {
+                            $performance .= ',' . $chart_data['performance'];
+                            $attitude .= ',' . $chart_data['attitude'];
+                            $dependability .= ',' . $chart_data['dependability'];
+                            $team_player .= ',' . $chart_data['team_player'];
+                            $learning_speed .= ',' . $chart_data['learning_speed'];
+                            $flexibility .= ',' . $chart_data['flexibility'];
+                            $creativity .= ',' . $chart_data['creativity'];
 
-                                        if ($chart_data['reference_name'] == $reference_3) {
-                                            $performance .= ',' . $chart_data['performance'];
-                                            $attitude .= ',' . $chart_data['attitude'];
-                                            $dependability .= ',' . $chart_data['dependability'];
-                                            $team_player .= ',' . $chart_data['team_player'];
-                                            $learning_speed .= ',' . $chart_data['learning_speed'];
-                                            $flexibility .= ',' . $chart_data['flexibility'];
-                                            $creativity .= ',' . $chart_data['creativity'];
-                                        }
-                                    }
+                            $productivy_reference_2 = $chart_data['performance'] * 20;
+                            $attitude_reference_2 = $chart_data['attitude'] * 20;
+                            $dependability_reference_2 = $chart_data['dependability'] * 20;
+                            $team_player_reference_2 = $chart_data['team_player'] * 20;
+                            $learning_speed_reference_2 = $chart_data['learning_speed'] * 20;
+                            $flexibility_reference_2 = $chart_data['flexibility'] * 20;
+                            $creativity_reference_2 = $chart_data['creativity'] * 20;
+                            
+                            $total_reference_2 = round((($chart_data['performance'] + 
+                                                 $chart_data['attitude'] + 
+                                                 $chart_data['dependability'] +
+                                                 $chart_data['team_player'] +
+                                                 $chart_data['learning_speed'] +
+                                                 $chart_data['flexibility'] +
+                                                 $chart_data['creativity']) / 7) * 20) ;
+                        }
 
-                                    //echo do_shortcode('[wp_charts title="barchart" type="bar" align="alignleft" margin="5px 20px" width="658px" height="400px" datasets="'.$performance.' next '.$attitude.' next '.$dependability.' next '.$team_player .' next '.$learning_speed.' next '.$flexibility.' next '.$creativity.'" labels="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '"]');
-                                    //echo do_shortcode('[chart barwidth="a,5,15" yaxisrange="0,0,10" yaxislabel="y" legendpos="l" legend="Performance|Attitude|Dependability|Team+Player|Learning+Speed|Flexibility|Creativity" data="'.$performance.'|'.$attitude.'|'.$dependability.'|'.$team_player .'|'.$learning_speed.'|'.$flexibility.'|'.$creativity.'" bg="" labels="' . $reference_1 . '|' . $reference_2 . '|' . $reference_3 . '" colors="058DC7,81feb6,ff8080,1601d1,50B432,ff0f0f,800040,ED561B,EDEF00" size="658x400" title="" type="bar"]');
-                                    //echo do_shortcode('[barchart]{ label: "Performance", data:   [[1, 10],[2, 10],[3, 10]] },{ label: "Attitude",data: [[5, 10],[3, 10],[3, 10]] }[/barchart]');
+                        if ($chart_data['reference_name'] == $reference_3) {
+                            $performance .= ',' . $chart_data['performance'];
+                            $attitude .= ',' . $chart_data['attitude'];
+                            $dependability .= ',' . $chart_data['dependability'];
+                            $team_player .= ',' . $chart_data['team_player'];
+                            $learning_speed .= ',' . $chart_data['learning_speed'];
+                            $flexibility .= ',' . $chart_data['flexibility'];
+                            $creativity .= ',' . $chart_data['creativity'];
 
-                                    echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" grid="false" groupnames="Productivity,Attitude,Dependability,Team Player,Learning Speed,Flexibility,Creativity" valuenames="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '" group1values="' . $performance . '" group2values="' . $attitude . '" group3values="' . $dependability . '" group4values="' . $team_player . '" group5values="' . $learning_speed . '" group6values="' . $flexibility . '" group7values="' . $creativity . '"]');
-                                    ?>
+                            $productivy_reference_3 = $chart_data['performance'] * 20;
+                            $attitude_reference_3 = $chart_data['attitude'] * 20;
+                            $dependability_reference_3 = $chart_data['dependability'] * 20;
+                            $team_player_reference_3 = $chart_data['team_player'] * 20;
+                            $learning_speed_reference_3 = $chart_data['learning_speed'] * 20;
+                            $flexibility_reference_3 = $chart_data['flexibility'] * 20;
+                            $creativity_reference_3 = $chart_data['creativity'] * 20;
+                            
+                            $total_reference_3 = round((($chart_data['performance'] + 
+                                                 $chart_data['attitude'] + 
+                                                 $chart_data['dependability'] +
+                                                 $chart_data['team_player'] +
+                                                 $chart_data['learning_speed'] +
+                                                 $chart_data['flexibility'] +
+                                                 $chart_data['creativity']) / 7) * 20) ;
+                        }
+                    }
+
+                    //echo do_shortcode('[wp_charts title="barchart" type="bar" align="alignleft" margin="5px 20px" width="658px" height="400px" datasets="'.$performance.' next '.$attitude.' next '.$dependability.' next '.$team_player .' next '.$learning_speed.' next '.$flexibility.' next '.$creativity.'" labels="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '"]');
+                    //echo do_shortcode('[chart barwidth="a,5,15" yaxisrange="0,0,10" yaxislabel="y" legendpos="l" legend="Performance|Attitude|Dependability|Team+Player|Learning+Speed|Flexibility|Creativity" data="'.$performance.'|'.$attitude.'|'.$dependability.'|'.$team_player .'|'.$learning_speed.'|'.$flexibility.'|'.$creativity.'" bg="" labels="' . $reference_1 . '|' . $reference_2 . '|' . $reference_3 . '" colors="058DC7,81feb6,ff8080,1601d1,50B432,ff0f0f,800040,ED561B,EDEF00" size="658x400" title="" type="bar"]');
+                    //echo do_shortcode('[barchart]{ label: "Performance", data:   [[1, 10],[2, 10],[3, 10]] },{ label: "Attitude",data: [[5, 10],[3, 10],[3, 10]] }[/barchart]');
+
+                    echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" grid="false" groupnames="Productivity,Attitude,Dependability,Team Player,Learning Speed,Flexibility,Creativity" valuenames="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '" group1values="' . $performance . '" group2values="' . $attitude . '" group3values="' . $dependability . '" group4values="' . $team_player . '" group5values="' . $learning_speed . '" group6values="' . $flexibility . '" group7values="' . $creativity . '"]');
+
+                    /* Shortcode Chart for Reference Request Responses */
+                    echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#000"]
+                                <h2>' . $reference_1 . '</h2>
+                                [su_progress_bar style="fancy" percent="' . $productivy_reference_1 . '" text="Productivity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $attitude_reference_1 . '" text="Attitude" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $dependability_reference_1 . '" text="Dependability" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $team_player_reference_1 . '" text="Team Player" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $learning_speed_reference_1 . '" text="Learning Speed" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $flexibility_reference_1 . '" text="Flexibility" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $creativity_reference_1 . '" text="Creativity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_pie percent="' . $total_reference_1 . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
+                                <h2>' . $reference_2 . '</h2>
+                                [su_progress_bar style="fancy" percent="' . $productivy_reference_2 . '" text="Productivity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $attitude_reference_2 . '" text="Attitude" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $dependability_reference_2 . '" text="Dependability" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $team_player_reference_2 . '" text="Team Player" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $learning_speed_reference_2 . '" text="Learning Speed" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $flexibility_reference_2 . '" text="Flexibility" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $creativity_reference_2 . '" text="Creativity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_pie percent="' . $total_reference_2 . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
+                                <h2>' . $reference_3 . '</h2>
+                                [su_progress_bar style="fancy" percent="' . $productivy_reference_3 . '" text="Productivity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $attitude_reference_3 . '" text="Attitude" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $dependability_reference_3 . '" text="Dependability" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $team_player_reference_3 . '" text="Team Player" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $learning_speed_reference_3 . '" text="Learning Speed" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $flexibility_reference_3 . '" text="Flexibility" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
+                                [su_progress_bar style="fancy" percent="' . $creativity_reference_3 . '" text="Creativity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]    
+                                [su_progress_pie percent="' . $total_reference_3 . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
+                                [/su_box][/su_shadow]');
+                    ?>
                                 </div>
 
                                 <div style="display:none" class="references">
@@ -1489,11 +1642,11 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 </div>
 
                                 <div class="clear"></div>  
-                                <?php
-                                break;
-                        endswitch;
-                    endforeach;
-                    ?>
+                    <?php
+                    break;
+            endswitch;
+        endforeach;
+        ?>
 
 
                     <?php if (current_user_can('manage_options') || current_user_can('can_submit_job')) : ?>  
@@ -1502,7 +1655,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                              <h2 class="resume_section_heading"><span style="padding-left: 4px;"><?php echo __('Admin Notes', APP_TD) ?></span></h2>
                              <div class="resume_section" style="border-bottom: 0px solid rgb(204, 204, 204);">						
                                  <p>
-                        <?php echo wptexturize(get_post_meta($post->ID, 'internal_notes', true)); ?>
+            <?php echo wptexturize(get_post_meta($post->ID, 'internal_notes', true)); ?>
                                  </p>
                              </div>  
                          </div>
@@ -1510,10 +1663,10 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                         <div class="processing-status">
                             <h2 class="resume_section_heading"><span style="padding-left: 4px;"><?php echo __('Processing Status', APP_TD) ?></span></h2>    
                             <div class="resume_section">
-                        <?php
-                        $terms = wp_get_post_terms($post->ID, 'resume_groups');
-                        if ($terms) :
-                            ?>
+            <?php
+            $terms = wp_get_post_terms($post->ID, 'resume_groups');
+            if ($terms) :
+                ?>
                             <?php
                             $terms_array = array();
                             foreach ($terms as $t) :
@@ -1526,7 +1679,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                             echo '<ul class="terms"><li>' . implode('</li><li>', $terms_array) . '</li></ul>';
                             ?>
 
-                                                                                                                                                                    <div class="clear"></div>
+                                                                                                                                                                        <div class="clear"></div>
 
                         <?php endif; ?>   
                             </div>
@@ -1535,7 +1688,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                     <?php else : ?>    	                      
 
-                    <?php endif; ?>    
+        <?php endif; ?>    
 
                     <!--           
                     <?php if (get_option('jr_ad_stats_all') == 'yes' && current_theme_supports('app-stats')) { ?><p class="stats"><?php appthemes_stats_counter($post->ID); ?></p> <?php } ?>
@@ -1545,21 +1698,21 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                 </div>  
 
                 <div style="display:none">
-                    <?php
-                    /* For Status Tags */
+        <?php
+        /* For Status Tags */
 
-                    $thetags = array($resume_options['fast_tracked'], $resume_options['reference_checked'], $resume_options['video_interview'], $resume_options['red_flagged'], $resume_options['completed_evaluation'], $resume_options['starred']);
-                    $thetags = array_map('trim', $thetags);
+        $thetags = array($resume_options['fast_tracked'], $resume_options['reference_checked'], $resume_options['video_interview'], $resume_options['red_flagged'], $resume_options['completed_evaluation'], $resume_options['starred']);
+        $thetags = array_map('trim', $thetags);
 
-                    if (sizeof($thetags) > 0) {
+        if (sizeof($thetags) > 0) {
 
-                        wp_set_object_terms($post->ID, $thetags, 'resume_groups');
-                    }
-                    ?>
+            wp_set_object_terms($post->ID, $thetags, 'resume_groups');
+        }
+        ?>
                 </div>
 
 
-                <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
+                    <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
                     <!--
                     <p class="button edit_resume"><a href="<?php echo add_query_arg('edit', $post->ID, get_permalink(JR_Resume_Edit_Page::get_id())); ?>"><?php _e('Edit Resume&nbsp;&rarr;', APP_TD); ?></a></p>
                     -->
@@ -1569,14 +1722,14 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     </p>
 
 
-                <?php endif; ?>
+        <?php endif; ?>
 
 
             </div><!-- end section_content -->
 
-            <?php appthemes_after_post(); ?>
+                <?php appthemes_after_post(); ?>
 
-            <?php jr_resume_footer($post); ?>
+        <?php jr_resume_footer($post); ?>
 
         <?php endwhile; ?>
 
@@ -1594,7 +1747,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
     <div id="comment-tab">
         <!--?php comments_template('/theme-comments.php'); ?-->
-        <?php comments_template(); ?>
+    <?php comments_template(); ?>
     </div>
 
 </div><!-- end section -->	

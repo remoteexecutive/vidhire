@@ -681,6 +681,14 @@ wp_enqueue_script('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.
             }); //ajax*/
         });
 
+        $j(".toggleMap").click({
+           //$j("#job_map").attr("style","position: absolute;left: 100%;"") 
+        });
+        
+        $j(".job_save").click(function() {
+            $j("#submit_form").submit();
+        });
+
     }); //no conflict function 		
 
     try {
