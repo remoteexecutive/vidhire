@@ -1607,6 +1607,13 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 $average_learning_speed = round($total_learning_speed / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
                                 $average_flexibility = round($total_flexibility / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
                                 $average_creativity = round($total_creativity / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_final = round(($total_productivity + 
+                                                 $total_attitude + 
+                                                 $total_dependability + 
+                                                 $total_team_player +
+                                                 $total_learning_speed +
+                                                 $total_flexibility +
+                                                 $total_creativity) / (7 * $total_divider),1,PHP_ROUND_HALF_ODD)  * 20;
 
                                 //RRR
                                 /* Shortcode Chart for Reference Request Responses */
@@ -1698,7 +1705,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     &nbsp;
                                     [/su_column]
                                     [su_column size="1/4"]
-                                    [su_progress_pie percent="57" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f1efb6" fill_color="#cd8803" text_color="#cd8803"]
+                                    [su_progress_pie percent="'.$average_final.'" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f1efb6" fill_color="#cd8803" text_color="#cd8803"]
                                     [/su_column]
                                     [/su_row][/su_note][/su_box][/su_shadow]');
                                 ?>
