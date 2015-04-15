@@ -102,16 +102,24 @@ global $app_abbr;
                                     echo "<span style='display:none;' class='final-evaluation-with-rating'>0</span>";
                                 } else {
                                     ?>
-                                    <img class="final-evaluation-with-rating-img" height="70" width="60" src="<?php bloginfo('template_url') ?>/images/rating-medal.jpg" />
+                                    <!--img class="final-evaluation-with-rating-img" height="70" width="60" src="<?php bloginfo('template_url') ?>/images/rating-medal.jpg" /-->
 
                                     <?php if (intval($get_evaluation->final_evaluation_score) < 10) { ?>
-                                        <span class="final-evaluation-with-rating">0<?php echo $get_evaluation->final_evaluation_score ?></span>
-                                    <?php } else { ?>
-                                        <span class="final-evaluation-with-rating"><?php echo $get_evaluation->final_evaluation_score ?></span>
-                                        <?php
-                                    }//inner if
-                                }//outer if 
-                                ?>
+                                        <span class="final-evaluation-with-rating"><?php
+                                            $evaluation_percent = round(($get_evaluation->final_evaluation_score / 7 ) * 20);
+
+                                            echo do_shortcode('[su_progress_pie percent="' . $evaluation_percent . '" before="<strong>" after="%</strong>" size="65" pie_width="40" text_size="17" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]');
+                                            ?></span>
+                                        <?php } else { ?>
+                                        <span class="final-evaluation-with-rating"><?php
+                        $evaluation_percent = round(($get_evaluation->final_evaluation_score / 7 ) * 20);
+
+                        echo do_shortcode('[su_progress_pie percent="' . $evaluation_percent . '" before="<strong>" after="%</strong>" size="65" pie_width="40" text_size="17" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]');
+                                            ?></span>
+                                            <?php
+                                        }//inner if
+                                    }//outer if 
+                                    ?>
                             </div>
 
 
@@ -120,12 +128,12 @@ global $app_abbr;
 
 
                                 <div class="location">
-                                    <?php jr_location(); ?>
+                <?php jr_location(); ?>
                                 </div>
 
 
                                 <div class="applying-for">  
-                                    <?php appthemes_before_post_title('resume'); ?>
+                <?php appthemes_before_post_title('resume'); ?>
                                     <?php
                                     if (get_option($app_abbr . '_resume_listing_visibility') != 'public')
                                         echo __('Applying for: ', APP_TD); //. wptexturize(get_the_author_meta('display_name'));
@@ -144,123 +152,123 @@ global $app_abbr;
                 <div class="resume_date"><?php echo date_i18n('j M', strtotime($post->post_date)); ?>,&nbsp;<span class="resume_year"><?php echo date_i18n('Y', strtotime($post->post_date)); ?></span></div>
                 </div>                  
                 </div-->      
-                                    <?php appthemes_after_post_title('resume'); ?>       
+                <?php appthemes_after_post_title('resume'); ?>       
 
                                     <br />
                                     <table class="toggle-processing-status" style="font-size: 9px;">
 
-                                        <?php
-                                        /*
-                                          Queries for toggling resume statuses
-                                         */
-                                        global $wpdb, $post;
+                <?php
+                /*
+                  Queries for toggling resume statuses
+                 */
+                global $wpdb, $post;
 
-                                        $employer_id = get_current_user_id();
+                $employer_id = get_current_user_id();
 
-                                        $resume_options = $wpdb->get_row("SELECT fast_tracked,reference_checked,video_interview,red_flagged,completed_evaluation,starred FROM wp_resume_statuses where resume_id = $post->ID AND employer_id = $employer_id", ARRAY_A);
+                $resume_options = $wpdb->get_row("SELECT fast_tracked,reference_checked,video_interview,red_flagged,completed_evaluation,starred FROM wp_resume_statuses where resume_id = $post->ID AND employer_id = $employer_id", ARRAY_A);
 
-                                        /* Fast Tracked HTML */
+                /* Fast Tracked HTML */
 
-                                        if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['fast_tracked'] == 'Standard Tracked') {
-                                            ?>
+                if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['fast_tracked'] == 'Standard Tracked') {
+                    ?>
                                             <tr>        
                                                 <td class="fast-track"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/orange-check-mark.png" /><a href="<?php echo add_query_arg('fast-track', 'true', '') . '&resume_id=' . $post->ID; ?>" class="fast-track"><?php echo $resume_options['fast_tracked']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['fast_tracked'] == 'Fast Tracked') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['fast_tracked'] == 'Fast Tracked') { ?>
                                             <tr>
                                                 <td class="fast-track"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><a href="<?php echo add_query_arg('fast-track', 'insufficient', '') . '&resume_id=' . $post->ID; ?>" class="fast-track"><?php echo $resume_options['fast_tracked']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['fast_tracked'] == 'Insufficient Skills') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['fast_tracked'] == 'Insufficient Skills') { ?>
 
                                                 <td class="fast-track"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/red-flag-check.gif" /><a href="<?php echo add_query_arg('fast-track', 'false', '') . '&resume_id=' . $post->ID; ?>" class="fast-track"><?php echo $resume_options['fast_tracked']; ?></a></td>    
 
 
-                                                <?php
-                                            }
+                    <?php
+                }
 
-                                            /* Reference Checked HTML */
-                                            if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['reference_checked'] == 'Check Reference') {
-                                                ?>
+                /* Reference Checked HTML */
+                if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['reference_checked'] == 'Check Reference') {
+                    ?>
 
                                                 <td class="reference-checked"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/orange-check-mark.png" /><a href="<?php echo add_query_arg('reference-checked', 'true', '') . '&resume_id=' . $post->ID; ?>" class="reference-checked"><?php echo $resume_options['reference_checked']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['reference_checked'] == 'References Checked') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['reference_checked'] == 'References Checked') { ?>
 
 
                                                 <td class="reference-checked"><a href="<?php echo add_query_arg('reference-checked', 'false', '') . '&resume_id=' . $post->ID; ?>" class="reference-checked"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['reference_checked']; ?></a></td>
 
-                                                <?php
-                                            }
-                                            /* Highest Rated HTML */
-                                            if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['starred'] == 'Pick') {
-                                                ?>  
+                    <?php
+                }
+                /* Highest Rated HTML */
+                if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['starred'] == 'Pick') {
+                    ?>  
 
                                                 <td class="highest-rated"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/orange-check-mark.png" /><a href="<?php echo add_query_arg('star-resume', 'second', '') . '&resume_id=' . $post->ID; ?>" class="highest-rated"><?php echo $resume_options['starred']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['starred'] == '2nd Highest Rated') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['starred'] == '2nd Highest Rated') { ?>
 
                                                 <td class="highest-rated"><a href="<?php echo add_query_arg('star-resume', 'first', '') . '&resume_id=' . $post->ID; ?>" class="highest-rated"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['starred']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['starred'] == 'Highest Rated') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['starred'] == 'Highest Rated') { ?>
                                                 <td class="highest-rated"><a href="<?php echo add_query_arg('star-resume', 'unrated', '') . '&resume_id=' . $post->ID; ?>" class="highest-rated"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['starred']; ?></a></td>						
 
 
 
 
-                                                <?php
-                                            }
+                    <?php
+                }
 
-                                            /* Video Interview Evaluated HTML */
-                                            if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['video_interview'] == 'No Video') {
-                                                ?>
+                /* Video Interview Evaluated HTML */
+                if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['video_interview'] == 'No Video') {
+                    ?>
                                             </tr>		
                                             <tr>          
                                                 <td class="video-interview-evaluated"><a href="<?php echo add_query_arg('video-interview-evaluated', 'submitted', '') . '&resume_id=' . $post->ID; ?>" class="video-interview-evaluated"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/red-flag-check.gif" /><?php echo $resume_options['video_interview']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['video_interview'] == 'Video Submitted') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['video_interview'] == 'Video Submitted') { ?>
                                             </tr>		
                                             <tr> 
                                                 <td class="video-interview-evaluated"><a href="<?php echo add_query_arg('video-interview-evaluated', 'evaluated', '') . '&resume_id=' . $post->ID; ?>" class="video-interview-evaluated"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/orange-check-mark.png" /><?php echo $resume_options['video_interview']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['video_interview'] == 'Video Evaluated') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['video_interview'] == 'Video Evaluated') { ?>
                                             </tr>		
                                             <tr>
                                                 <td class="video-interview-evaluated"><a href="<?php echo add_query_arg('video-interview-evaluated', 'false', '') . '&resume_id=' . $post->ID; ?>" class="video-interview-evaluated"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['video_interview']; ?></a></td>
-                                                <?php
-                                            }
+                    <?php
+                }
 
-                                            /* No Red Flags HTML */
-                                            if (is_user_logged_in() && current_user_can('can_submit_job') && trim($resume_options['red_flagged']) == 'Check For Red Flags') {
-                                                ?>
+                /* No Red Flags HTML */
+                if (is_user_logged_in() && current_user_can('can_submit_job') && trim($resume_options['red_flagged']) == 'Check For Red Flags') {
+                    ?>
                                                 <td class="no-red-flags"><a href="<?php echo add_query_arg('no-red-flags', 'false', '') . '&resume_id=' . $post->ID; ?>" class="no-red-flags"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/orange-check-mark.png" /><?php echo $resume_options['red_flagged']; ?></a></td>
                                             <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && trim($resume_options['red_flagged']) == 'Red Flagged') { ?>
                                                 <td class="no-red-flags"><a href="<?php echo add_query_arg('no-red-flags', 'true', '') . '&resume_id=' . $post->ID; ?>" class="no-red-flags"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/red-flag-check.gif" /><?php echo $resume_options['red_flagged']; ?></a></td>
                                             <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && trim($resume_options['red_flagged']) == 'No Red Flags') { ?>
                                                 <td class="no-red-flags"><a href="<?php echo add_query_arg('no-red-flags', 'checking', '') . '&resume_id=' . $post->ID; ?>" class="no-red-flags"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['red_flagged']; ?></a></td>
 
-                                                <?php
-                                            }
+                    <?php
+                }
 
-                                            /* Completed Evaluation HTML */
-                                            if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Evaluate') {
-                                                ?>  
+                /* Completed Evaluation HTML */
+                if (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Evaluate') {
+                    ?>  
                                                 <td class="completed-evaluation"><a href="<?php echo add_query_arg('completed-evaluation', 'true', '') . '&resume_id=' . $post->ID; ?>" class="completed-evaluation"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/orange-check-mark.png" /><?php echo $resume_options['completed_evaluation']; ?></a></td>
                                             <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Completed Evaluation') { ?>
                                                 <td class="completed-evaluation"><a href="<?php echo add_query_arg('completed-evaluation', 'false', '') . '&resume_id=' . $post->ID; ?>" class="completed-evaluation"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['completed_evaluation']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'First') { ?>   
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'First') { ?>   
 
                                                 <td class="completed-evaluation"><a href="<?php echo add_query_arg('completed-evaluation', 'second', '') . '&resume_id=' . $post->ID; ?>" class="completed-evaluation"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['completed_evaluation']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Second') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Second') { ?>
 
                                                 <td class="completed-evaluation"><a href="<?php echo add_query_arg('completed-evaluation', 'third', '') . '&resume_id=' . $post->ID; ?>" class="completed-evaluation"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['completed_evaluation']; ?></a></td>
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Third') { ?>   
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Third') { ?>   
 
                                                 <td class="completed-evaluation"><a href="<?php echo add_query_arg('completed-evaluation', 'true', '') . '&resume_id=' . $post->ID; ?>" class="completed-evaluation"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['completed_evaluation']; ?></a></td>	
 
-                                            <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Hired') { ?>
+                <?php } elseif (is_user_logged_in() && current_user_can('can_submit_job') && $resume_options['completed_evaluation'] == 'Hired') { ?>
                                                 <td class="completed-evaluation"><a href="<?php echo add_query_arg('completed-evaluation', 'true', '') . '&resume_id=' . $post->ID; ?>" class="completed-evaluation"><img class="green-checked" height="16" width="16" src="<?php bloginfo('template_url') ?>/images/green-check-mark.png" /><?php echo $resume_options['completed_evaluation']; ?></a></td>
                                             <?php } ?>    
                                         </tr> 
@@ -269,24 +277,24 @@ global $app_abbr;
                             </div>
                     </li>
 
-                <?php } //end resume_id if ?>            
-            <?php } //end resume_id foreach  ?>
+            <?php } //end resume_id if  ?>            
+            <?php } //end resume_id foreach   ?>
 
             <div style="display:none">
-                <?php
-                /* For Status Tags */
+        <?php
+        /* For Status Tags */
 
-                $thetags = array($resume_options['fast_tracked'], $resume_options['reference_checked'], $resume_options['video_interview'], $resume_options['red_flagged'], $resume_options['completed_evaluation'], $resume_options['starred']);
+        $thetags = array($resume_options['fast_tracked'], $resume_options['reference_checked'], $resume_options['video_interview'], $resume_options['red_flagged'], $resume_options['completed_evaluation'], $resume_options['starred']);
 
-                $thetags = array_map('trim', $thetags);
+        $thetags = array_map('trim', $thetags);
 
-                if (sizeof($thetags) > 0) {
+        if (sizeof($thetags) > 0) {
 
-                    wp_set_object_terms($post->ID, $thetags, 'resume_groups', false);
-                }
-                ?>
+            wp_set_object_terms($post->ID, $thetags, 'resume_groups', false);
+        }
+        ?>
             </div>          
-            <?php appthemes_after_post('resume'); ?>
+                <?php appthemes_after_post('resume'); ?>
 
         <?php endwhile; ?>
 

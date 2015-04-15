@@ -745,13 +745,37 @@ function my_mail_from_name($name) {
     return "Vidhire Human Resources ref@vidhire.net";
 }
 
-/*For wp_get_attachment_link to open in a new tab 
+/* For wp_get_attachment_link to open in a new tab 
  * instead of on the current window
  */
+
 function modify_attachment_link($markup) {
     return preg_replace('/^<a([^>]+)>(.*)$/', '<a\\1 target="_blank">\\2', $markup);
 }
-add_filter( 'wp_get_attachment_link', 'modify_attachment_link', 10, 6 );
 
+add_filter('wp_get_attachment_link', 'modify_attachment_link', 10, 6);
 
-/*Bug: the name "dependability" doesn't work and will be break when email is sent to user, used "depend" instead: Line 512*/
+function get_rating($rating) {
+    /* For Getting Productivity Text Rating */
+    switch ($rating) {
+        case "1":
+            $text_rating = "Poor";
+            break;
+        case "2":
+            $text_rating = "Fair";
+            break;
+        case "3":
+            $text_rating = "Good";
+            break;
+        case "4":
+            $text_rating = "Very Good";
+            break;
+        case "5":
+            $text_rating = "Guru";
+            break;
+    }
+    
+    return $text_rating;
+}
+
+/* Bug: the name "dependability" doesn't work and will be break when email is sent to user, used "depend" instead: Line 512 */

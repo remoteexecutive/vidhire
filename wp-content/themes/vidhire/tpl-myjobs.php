@@ -2,9 +2,6 @@
 /*
   Template Name: My Jobs Template
  */
-?>
-
-<?php
 ### Prevent Caching
 nocache_headers();
 

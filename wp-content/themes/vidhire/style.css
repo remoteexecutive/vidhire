@@ -3280,8 +3280,8 @@ div.actions {
 
 .final-evaluation-with-rating {
     position: relative;
-    top: -29px;
-    left: -60px;
+    top: 15px;
+    left: -20px;
     font-weight: bolder;
     font-size: 20px;  
     color: #817400;
@@ -4036,3 +4036,15 @@ img.logo {
     top: 33px;
 } 
 
+.page-template-tpl-dashboard .sue-progress-pie strong{
+
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+    color:#cd8803;
+    font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+}
+
+.page-template-tpl-dashboard .sue-progress-pie-align-center {
+    margin:0;
+}

@@ -283,7 +283,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 //echo '<dt class="skype">' . __('Skype', APP_TD) . ':</dt><dd>'
                                     echo __('Skype', APP_TD) . ': ';
                                 ?>											
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="<?php echo 'skype:<strong>' . $contact_details['skype'] . '</strong>'; ?>"><!--img height="20" weight="20" src="<?php bloginfo('template_url') ?>/images/social-skype-button-blue-icon.png" /--><?php echo $contact_details['skype']; ?></a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="<?php echo 'skype:<strong>' . $contact_details['skype'] . '</strong>'; ?>"><!--img height="20" weight="20" src="<?php bloginfo('template_url') ?>/images/social-skype-button-blue-icon.png" /--><?php echo $contact_details['skype']; ?></a>
 
 
                                 <!--script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script-->
@@ -1187,9 +1187,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     <?php
                                     $video_evaluation_values = $get_video_evaluation->confidence_score . ',' . $get_video_evaluation->communication_score . ',' . $get_video_evaluation->fun_factor_score . ',' . $get_video_evaluation->connection_score . ',' . $get_video_evaluation->understanding_score . ',' . $get_video_evaluation->bonus_score;
 
-                                    /*echo "<div class='video-evaluation-form'>";
-                                    echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" groupcolors="333399" groupnames="Score" valuenames="Confidence,Communication,Enthusiasm,Connection,Understanding,Boost" group1values="' . $video_evaluation_values . '"]');
-                                    echo "</div>";*/
+                                    /* echo "<div class='video-evaluation-form'>";
+                                      echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" groupcolors="333399" groupnames="Score" valuenames="Confidence,Communication,Enthusiasm,Connection,Understanding,Boost" group1values="' . $video_evaluation_values . '"]');
+                                      echo "</div>"; */
 
 
                                     $confidence_score = $get_video_evaluation->confidence_score * 20;
@@ -1200,6 +1200,8 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     $optional_boost_score = $get_video_evaluation->bonus_score * 20;
                                     $video_evaluation_total = round(($get_video_evaluation->video_evaluation_score / 6 ) * 20);
 
+                                    
+                                    //EE
                                     /* Shortcode Chart for Video Evaluation */
                                     echo do_shortcode('[su_shadow style="simple"][su_box title="Video Evaluation" style="glass" box_color="#000000"][su_note note_color="#000000" radius="5"]
                                 [su_progress_bar style="fancy" percent="' . $confidence_score . '" text="<strong>Confidence</strong>" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
@@ -1465,138 +1467,242 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 ?>		
                                 <!--
                     <h2 class="resume_section_heading"><span><?php echo $media_title ?></span></h2>
-                                -->
+                               
                                 <div class="reference-request-responses-container" style="border-bottom: 0px solid rgb(204, 204, 204); padding: 0px 0px 0px 0px;">						
-                                    <!--
+                                    
                                     <iframe height="400" width="658" src="<?php echo wptexturize(get_post_meta($post->ID, 'chart', true)); ?>"></iframe>
-                                    -->
+                                    
                                     <h2 class="reference-request-responses-heading"><span>Reference Request Responses</span></h2>
-                    <?php
-                    $reference_1 = get_post_meta($post->ID, 'reference_name_1', true);
-                    $reference_2 = get_post_meta($post->ID, 'reference_name_2', true);
-                    $reference_3 = get_post_meta($post->ID, 'reference_name_3', true);
+                                </div> 
+                                -->
 
-                    $get_chart_data = $wpdb->get_results($wpdb->prepare("SELECT reference_name,performance,attitude,dependability,team_player,learning_speed,flexibility,creativity FROM wp_references_responses WHERE resume_id in (%d) and reference_name in (%s,%s,%s)", $post->ID, $reference_1, $reference_2, $reference_3), ARRAY_A);
+                                <?php
+                                $reference_1 = get_post_meta($post->ID, 'reference_name_1', true);
+                                $reference_2 = get_post_meta($post->ID, 'reference_name_2', true);
+                                $reference_3 = get_post_meta($post->ID, 'reference_name_3', true);
 
-                    foreach ($get_chart_data as $chart_data) {
-                        if ($chart_data['reference_name'] == $reference_1) {
-                            $performance .= $chart_data['performance'];
-                            $attitude .= $chart_data['attitude'];
-                            $dependability .= $chart_data['dependability'];
-                            $team_player .= $chart_data['team_player'];
-                            $learning_speed .= $chart_data['learning_speed'];
-                            $flexibility .= $chart_data['flexibility'];
-                            $creativity .= $chart_data['creativity'];
+                                $get_chart_data = $wpdb->get_results($wpdb->prepare("SELECT reference_name,performance,attitude,dependability,team_player,learning_speed,flexibility,creativity FROM wp_references_responses WHERE resume_id in (%d) and reference_name in (%s,%s,%s)", $post->ID, $reference_1, $reference_2, $reference_3), ARRAY_A);
 
-                            $productivy_reference_1 = $chart_data['performance'] * 20;
-                            $attitude_reference_1 = $chart_data['attitude'] * 20;
-                            $dependability_reference_1 = $chart_data['dependability'] * 20;
-                            $team_player_reference_1 = $chart_data['team_player'] * 20;
-                            $learning_speed_reference_1 = $chart_data['learning_speed'] * 20;
-                            $flexibility_reference_1 = $chart_data['flexibility'] * 20;
-                            $creativity_reference_1 = $chart_data['creativity'] * 20;
-                            
-                            $total_reference_1 = round((($chart_data['performance'] + 
-                                                 $chart_data['attitude'] + 
-                                                 $chart_data['dependability'] +
-                                                 $chart_data['team_player'] +
-                                                 $chart_data['learning_speed'] +
-                                                 $chart_data['flexibility'] +
-                                                 $chart_data['creativity']) / 7) * 20) ;
-                        }   
+                                foreach ($get_chart_data as $chart_data) {
+                                    if ($chart_data['reference_name'] == $reference_1) {
+                                        $performance .= $chart_data['performance'];
+                                        $attitude .= $chart_data['attitude'];
+                                        $dependability .= $chart_data['dependability'];
+                                        $team_player .= $chart_data['team_player'];
+                                        $learning_speed .= $chart_data['learning_speed'];
+                                        $flexibility .= $chart_data['flexibility'];
+                                        $creativity .= $chart_data['creativity'];
+
+                                        /* For Getting Text Rating */
+                                        $productivity_rating_1 = get_rating($chart_data['performance']);
+                                        $attitude_rating_1 = get_rating($chart_data['attitude']);
+                                        $dependability_rating_1 = get_rating($chart_data['dependability']);
+                                        $team_player_rating_1 = get_rating($chart_data['team_player']);
+                                        $learning_speed_rating_1 = get_rating($chart_data['learning_speed']);
+                                        $flexibility_rating_1 = get_rating($chart_data['flexibility']);
+                                        $creativity_rating_1 = get_rating($chart_data['creativity']);
+
+                                        $productivity_reference_1 = $chart_data['performance'] * 20;
+                                        $attitude_reference_1 = $chart_data['attitude'] * 20;
+                                        $dependability_reference_1 = $chart_data['dependability'] * 20;
+                                        $team_player_reference_1 = $chart_data['team_player'] * 20;
+                                        $learning_speed_reference_1 = $chart_data['learning_speed'] * 20;
+                                        $flexibility_reference_1 = $chart_data['flexibility'] * 20;
+                                        $creativity_reference_1 = $chart_data['creativity'] * 20;
+
+                                        $total_productivity += $chart_data['performance'];
+                                        $total_attitude += $chart_data['attitude'];
+                                        $total_dependability += $chart_data['dependability'];
+                                        $total_team_player += $chart_data['team_player'];
+                                        $total_learning_speed += $chart_data['learning_speed'];
+                                        $total_flexibility += $chart_data['flexibility'];
+                                        $total_creativity += $chart_data['creativity'];
+                                        $total_divider += 1;
+                                    }
 
 
-                        if ($chart_data['reference_name'] == $reference_2) {
-                            $performance .= ',' . $chart_data['performance'];
-                            $attitude .= ',' . $chart_data['attitude'];
-                            $dependability .= ',' . $chart_data['dependability'];
-                            $team_player .= ',' . $chart_data['team_player'];
-                            $learning_speed .= ',' . $chart_data['learning_speed'];
-                            $flexibility .= ',' . $chart_data['flexibility'];
-                            $creativity .= ',' . $chart_data['creativity'];
+                                    if ($chart_data['reference_name'] == $reference_2) {
+                                        $performance .= ',' . $chart_data['performance'];
+                                        $attitude .= ',' . $chart_data['attitude'];
+                                        $dependability .= ',' . $chart_data['dependability'];
+                                        $team_player .= ',' . $chart_data['team_player'];
+                                        $learning_speed .= ',' . $chart_data['learning_speed'];
+                                        $flexibility .= ',' . $chart_data['flexibility'];
+                                        $creativity .= ',' . $chart_data['creativity'];
 
-                            $productivy_reference_2 = $chart_data['performance'] * 20;
-                            $attitude_reference_2 = $chart_data['attitude'] * 20;
-                            $dependability_reference_2 = $chart_data['dependability'] * 20;
-                            $team_player_reference_2 = $chart_data['team_player'] * 20;
-                            $learning_speed_reference_2 = $chart_data['learning_speed'] * 20;
-                            $flexibility_reference_2 = $chart_data['flexibility'] * 20;
-                            $creativity_reference_2 = $chart_data['creativity'] * 20;
-                            
-                            $total_reference_2 = round((($chart_data['performance'] + 
-                                                 $chart_data['attitude'] + 
-                                                 $chart_data['dependability'] +
-                                                 $chart_data['team_player'] +
-                                                 $chart_data['learning_speed'] +
-                                                 $chart_data['flexibility'] +
-                                                 $chart_data['creativity']) / 7) * 20) ;
-                        }
+                                        /* For Getting Text Rating */
+                                       /* For Getting Text Rating */
+                                        $productivity_rating_2 = get_rating($chart_data['performance']);
+                                        $attitude_rating_2 = get_rating($chart_data['attitude']);
+                                        $dependability_rating_2 = get_rating($chart_data['dependability']);
+                                        $team_player_rating_2 = get_rating($chart_data['team_player']);
+                                        $learning_speed_rating_2 = get_rating($chart_data['learning_speed']);
+                                        $flexibility_rating_2 = get_rating($chart_data['flexibility']);
+                                        $creativity_rating_2 = get_rating($chart_data['creativity']);
+                                        
+                                        $productivity_reference_2 = $chart_data['performance'] * 20;
+                                        $attitude_reference_2 = $chart_data['attitude'] * 20;
+                                        $dependability_reference_2 = $chart_data['dependability'] * 20;
+                                        $team_player_reference_2 = $chart_data['team_player'] * 20;
+                                        $learning_speed_reference_2 = $chart_data['learning_speed'] * 20;
+                                        $flexibility_reference_2 = $chart_data['flexibility'] * 20;
+                                        $creativity_reference_2 = $chart_data['creativity'] * 20;
 
-                        if ($chart_data['reference_name'] == $reference_3) {
-                            $performance .= ',' . $chart_data['performance'];
-                            $attitude .= ',' . $chart_data['attitude'];
-                            $dependability .= ',' . $chart_data['dependability'];
-                            $team_player .= ',' . $chart_data['team_player'];
-                            $learning_speed .= ',' . $chart_data['learning_speed'];
-                            $flexibility .= ',' . $chart_data['flexibility'];
-                            $creativity .= ',' . $chart_data['creativity'];
+                                        $total_productivity += $chart_data['performance'];
+                                        $total_attitude += $chart_data['attitude'];
+                                        $total_dependability += $chart_data['dependability'];
+                                        $total_team_player += $chart_data['team_player'];
+                                        $total_learning_speed += $chart_data['learning_speed'];
+                                        $total_flexibility += $chart_data['flexibility'];
+                                        $total_creativity += $chart_data['creativity'];
+                                        $total_divider += 1;
+                                    }
 
-                            $productivy_reference_3 = $chart_data['performance'] * 20;
-                            $attitude_reference_3 = $chart_data['attitude'] * 20;
-                            $dependability_reference_3 = $chart_data['dependability'] * 20;
-                            $team_player_reference_3 = $chart_data['team_player'] * 20;
-                            $learning_speed_reference_3 = $chart_data['learning_speed'] * 20;
-                            $flexibility_reference_3 = $chart_data['flexibility'] * 20;
-                            $creativity_reference_3 = $chart_data['creativity'] * 20;
-                            
-                            $total_reference_3 = round((($chart_data['performance'] + 
-                                                 $chart_data['attitude'] + 
-                                                 $chart_data['dependability'] +
-                                                 $chart_data['team_player'] +
-                                                 $chart_data['learning_speed'] +
-                                                 $chart_data['flexibility'] +
-                                                 $chart_data['creativity']) / 7) * 20) ;
-                        }
-                    }
+                                    if ($chart_data['reference_name'] == $reference_3) {
+                                        $performance .= ',' . $chart_data['performance'];
+                                        $attitude .= ',' . $chart_data['attitude'];
+                                        $dependability .= ',' . $chart_data['dependability'];
+                                        $team_player .= ',' . $chart_data['team_player'];
+                                        $learning_speed .= ',' . $chart_data['learning_speed'];
+                                        $flexibility .= ',' . $chart_data['flexibility'];
+                                        $creativity .= ',' . $chart_data['creativity'];
+                                        
+                                        /* For Getting Text Rating */
+                                        $productivity_rating_3 = get_rating($chart_data['performance']);
+                                        $attitude_rating_3 = get_rating($chart_data['attitude']);
+                                        $dependability_rating_3 = get_rating($chart_data['dependability']);
+                                        $team_player_rating_3 = get_rating($chart_data['team_player']);
+                                        $learning_speed_rating_3 = get_rating($chart_data['learning_speed']);
+                                        $flexibility_rating_3 = get_rating($chart_data['flexibility']);
+                                        $creativity_rating_3 = get_rating($chart_data['creativity']);
 
-                    //echo do_shortcode('[wp_charts title="barchart" type="bar" align="alignleft" margin="5px 20px" width="658px" height="400px" datasets="'.$performance.' next '.$attitude.' next '.$dependability.' next '.$team_player .' next '.$learning_speed.' next '.$flexibility.' next '.$creativity.'" labels="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '"]');
-                    //echo do_shortcode('[chart barwidth="a,5,15" yaxisrange="0,0,10" yaxislabel="y" legendpos="l" legend="Performance|Attitude|Dependability|Team+Player|Learning+Speed|Flexibility|Creativity" data="'.$performance.'|'.$attitude.'|'.$dependability.'|'.$team_player .'|'.$learning_speed.'|'.$flexibility.'|'.$creativity.'" bg="" labels="' . $reference_1 . '|' . $reference_2 . '|' . $reference_3 . '" colors="058DC7,81feb6,ff8080,1601d1,50B432,ff0f0f,800040,ED561B,EDEF00" size="658x400" title="" type="bar"]');
-                    //echo do_shortcode('[barchart]{ label: "Performance", data:   [[1, 10],[2, 10],[3, 10]] },{ label: "Attitude",data: [[5, 10],[3, 10],[3, 10]] }[/barchart]');
+                                        $productivity_reference_3 = $chart_data['performance'] * 20;
+                                        $attitude_reference_3 = $chart_data['attitude'] * 20;
+                                        $dependability_reference_3 = $chart_data['dependability'] * 20;
+                                        $team_player_reference_3 = $chart_data['team_player'] * 20;
+                                        $learning_speed_reference_3 = $chart_data['learning_speed'] * 20;
+                                        $flexibility_reference_3 = $chart_data['flexibility'] * 20;
+                                        $creativity_reference_3 = $chart_data['creativity'] * 20;
 
-                    echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" grid="false" groupnames="Productivity,Attitude,Dependability,Team Player,Learning Speed,Flexibility,Creativity" valuenames="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '" group1values="' . $performance . '" group2values="' . $attitude . '" group3values="' . $dependability . '" group4values="' . $team_player . '" group5values="' . $learning_speed . '" group6values="' . $flexibility . '" group7values="' . $creativity . '"]');
+                                        $total_productivity += $chart_data['performance'];
+                                        $total_attitude += $chart_data['attitude'];
+                                        $total_dependability += $chart_data['dependability'];
+                                        $total_team_player += $chart_data['team_player'];
+                                        $total_learning_speed += $chart_data['learning_speed'];
+                                        $total_flexibility += $chart_data['flexibility'];
+                                        $total_creativity += $chart_data['creativity'];
+                                        $total_divider += 1;
+                                    }
+                                }
+                                //echo do_shortcode('[wp_charts title="barchart" type="bar" align="alignleft" margin="5px 20px" width="658px" height="400px" datasets="'.$performance.' next '.$attitude.' next '.$dependability.' next '.$team_player .' next '.$learning_speed.' next '.$flexibility.' next '.$creativity.'" labels="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '"]');
+                                //echo do_shortcode('[chart barwidth="a,5,15" yaxisrange="0,0,10" yaxislabel="y" legendpos="l" legend="Performance|Attitude|Dependability|Team+Player|Learning+Speed|Flexibility|Creativity" data="'.$performance.'|'.$attitude.'|'.$dependability.'|'.$team_player .'|'.$learning_speed.'|'.$flexibility.'|'.$creativity.'" bg="" labels="' . $reference_1 . '|' . $reference_2 . '|' . $reference_3 . '" colors="058DC7,81feb6,ff8080,1601d1,50B432,ff0f0f,800040,ED561B,EDEF00" size="658x400" title="" type="bar"]');
+                                //echo do_shortcode('[barchart]{ label: "Performance", data:   [[1, 10],[2, 10],[3, 10]] },{ label: "Attitude",data: [[5, 10],[3, 10],[3, 10]] }[/barchart]');
+                                //echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" grid="false" groupnames="Productivity,Attitude,Dependability,Team Player,Learning Speed,Flexibility,Creativity" valuenames="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '" group1values="' . $performance . '" group2values="' . $attitude . '" group3values="' . $dependability . '" group4values="' . $team_player . '" group5values="' . $learning_speed . '" group6values="' . $flexibility . '" group7values="' . $creativity . '"]');
 
-                    /* Shortcode Chart for Reference Request Responses */
-                    echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#000"]
-                                <h2>' . $reference_1 . '</h2>
-                                [su_progress_bar style="fancy" percent="' . $productivy_reference_1 . '" text="Productivity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $attitude_reference_1 . '" text="Attitude" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $dependability_reference_1 . '" text="Dependability" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $team_player_reference_1 . '" text="Team Player" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $learning_speed_reference_1 . '" text="Learning Speed" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $flexibility_reference_1 . '" text="Flexibility" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $creativity_reference_1 . '" text="Creativity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_pie percent="' . $total_reference_1 . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
-                                <h2>' . $reference_2 . '</h2>
-                                [su_progress_bar style="fancy" percent="' . $productivy_reference_2 . '" text="Productivity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $attitude_reference_2 . '" text="Attitude" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $dependability_reference_2 . '" text="Dependability" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $team_player_reference_2 . '" text="Team Player" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $learning_speed_reference_2 . '" text="Learning Speed" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $flexibility_reference_2 . '" text="Flexibility" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $creativity_reference_2 . '" text="Creativity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_pie percent="' . $total_reference_2 . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
-                                <h2>' . $reference_3 . '</h2>
-                                [su_progress_bar style="fancy" percent="' . $productivy_reference_3 . '" text="Productivity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $attitude_reference_3 . '" text="Attitude" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $dependability_reference_3 . '" text="Dependability" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $team_player_reference_3 . '" text="Team Player" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $learning_speed_reference_3 . '" text="Learning Speed" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $flexibility_reference_3 . '" text="Flexibility" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]
-                                [su_progress_bar style="fancy" percent="' . $creativity_reference_3 . '" text="Creativity" bar_color="#f0f0f0" fill_color="#97daed" text_color="#555555" class=""]    
-                                [su_progress_pie percent="' . $total_reference_3 . '" before="<strong>" after="%</strong>" size="60" pie_width="40" text_size="16" pie_color="#f1efb6" fill_color="#f29b00" text_color="#cd8803"]
-                                [/su_box][/su_shadow]');
-                    ?>
-                                </div>
+                                /* Per Criteria Average */
+                                $average_productivity = round($total_productivity / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_attitude = round($total_attitude / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_dependability = round($total_dependability / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_team_player = round($total_team_player / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_learning_speed = round($total_learning_speed / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_flexibility = round($total_flexibility / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+                                $average_creativity = round($total_creativity / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
+
+                                //RRR
+                                /* Shortcode Chart for Reference Request Responses */
+                                echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#000"][su_note note_color="#FFF4EA" text_color="#000000" radius="0"]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Productivity</h2>
+                                    [su_progress_bar style="thin" percent="' . $productivity_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $productivity_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $productivity_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $productivity_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $productivity_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $productivity_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_productivity . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"][/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Attitude</h2>
+                                    [su_progress_bar style="thin" percent="' . $attitude_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$attitude_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $attitude_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$attitude_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $attitude_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$attitude_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_attitude . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"][/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Dependability</h2>
+                                    [su_progress_bar style="thin" percent="' . $dependability_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$dependability_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $dependability_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$dependability_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $dependability_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$dependability_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_dependability . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"][/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Team Player</h2>
+                                    [su_progress_bar style="thin" percent="' . $team_player_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$team_player_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $team_player_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$team_player_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $team_player_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$team_player_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_team_player . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"][/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Learning Speed</h2>
+                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$learning_speed_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$learning_speed_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$learning_speed_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_learning_speed . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"]
+                                    [/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Flexibility</h2>
+                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$flexibility_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$flexibility_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$flexibility_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_flexibility . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"][/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row][su_column size="3/4"]
+                                    <h2>Creativity</h2>
+                                    [su_progress_bar style="thin" percent="' . $creativity_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$creativity_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $creativity_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$creativity_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $creativity_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$creativity_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
+                                    [su_progress_pie percent="' . $average_creativity . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f0dbc9" fill_color="#E68A8A" text_color="#666652"]
+                                    [/su_column]
+                                    [/su_row]
+                                    [su_heading style="line-light" size="25"][/su_heading]
+                                    [su_row]
+                                    [su_column size="2/4"]
+                                    <h2 style="text-align:center">References Evaluation</h2>
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    &nbsp;
+                                    [/su_column]
+                                    [su_column size="1/4"]
+                                    [su_progress_pie percent="57" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f1efb6" fill_color="#cd8803" text_color="#cd8803"]
+                                    [/su_column]
+                                    [/su_row][/su_note][/su_box][/su_shadow]');
+                                ?>
+
 
                                 <div style="display:none" class="references">
                                     <!--
@@ -1642,11 +1748,11 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 </div>
 
                                 <div class="clear"></div>  
-                    <?php
-                    break;
-            endswitch;
-        endforeach;
-        ?>
+                                <?php
+                                break;
+                        endswitch;
+                    endforeach;
+                    ?>
 
 
                     <?php if (current_user_can('manage_options') || current_user_can('can_submit_job')) : ?>  
@@ -1655,7 +1761,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                              <h2 class="resume_section_heading"><span style="padding-left: 4px;"><?php echo __('Admin Notes', APP_TD) ?></span></h2>
                              <div class="resume_section" style="border-bottom: 0px solid rgb(204, 204, 204);">						
                                  <p>
-            <?php echo wptexturize(get_post_meta($post->ID, 'internal_notes', true)); ?>
+                        <?php echo wptexturize(get_post_meta($post->ID, 'internal_notes', true)); ?>
                                  </p>
                              </div>  
                          </div>
@@ -1663,10 +1769,10 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                         <div class="processing-status">
                             <h2 class="resume_section_heading"><span style="padding-left: 4px;"><?php echo __('Processing Status', APP_TD) ?></span></h2>    
                             <div class="resume_section">
-            <?php
-            $terms = wp_get_post_terms($post->ID, 'resume_groups');
-            if ($terms) :
-                ?>
+                        <?php
+                        $terms = wp_get_post_terms($post->ID, 'resume_groups');
+                        if ($terms) :
+                            ?>
                             <?php
                             $terms_array = array();
                             foreach ($terms as $t) :
@@ -1679,7 +1785,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                             echo '<ul class="terms"><li>' . implode('</li><li>', $terms_array) . '</li></ul>';
                             ?>
 
-                                                                                                                                                                        <div class="clear"></div>
+                                                                                                                                                                                        <div class="clear"></div>
 
                         <?php endif; ?>   
                             </div>
@@ -1688,7 +1794,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                     <?php else : ?>    	                      
 
-        <?php endif; ?>    
+                    <?php endif; ?>    
 
                     <!--           
                     <?php if (get_option('jr_ad_stats_all') == 'yes' && current_theme_supports('app-stats')) { ?><p class="stats"><?php appthemes_stats_counter($post->ID); ?></p> <?php } ?>
@@ -1698,21 +1804,21 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                 </div>  
 
                 <div style="display:none">
-        <?php
-        /* For Status Tags */
+                    <?php
+                    /* For Status Tags */
 
-        $thetags = array($resume_options['fast_tracked'], $resume_options['reference_checked'], $resume_options['video_interview'], $resume_options['red_flagged'], $resume_options['completed_evaluation'], $resume_options['starred']);
-        $thetags = array_map('trim', $thetags);
+                    $thetags = array($resume_options['fast_tracked'], $resume_options['reference_checked'], $resume_options['video_interview'], $resume_options['red_flagged'], $resume_options['completed_evaluation'], $resume_options['starred']);
+                    $thetags = array_map('trim', $thetags);
 
-        if (sizeof($thetags) > 0) {
+                    if (sizeof($thetags) > 0) {
 
-            wp_set_object_terms($post->ID, $thetags, 'resume_groups');
-        }
-        ?>
+                        wp_set_object_terms($post->ID, $thetags, 'resume_groups');
+                    }
+                    ?>
                 </div>
 
 
-                    <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
+                <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
                     <!--
                     <p class="button edit_resume"><a href="<?php echo add_query_arg('edit', $post->ID, get_permalink(JR_Resume_Edit_Page::get_id())); ?>"><?php _e('Edit Resume&nbsp;&rarr;', APP_TD); ?></a></p>
                     -->
@@ -1722,14 +1828,14 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     </p>
 
 
-        <?php endif; ?>
+                <?php endif; ?>
 
 
             </div><!-- end section_content -->
 
-                <?php appthemes_after_post(); ?>
+            <?php appthemes_after_post(); ?>
 
-        <?php jr_resume_footer($post); ?>
+            <?php jr_resume_footer($post); ?>
 
         <?php endwhile; ?>
 
@@ -1747,7 +1853,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
     <div id="comment-tab">
         <!--?php comments_template('/theme-comments.php'); ?-->
-    <?php comments_template(); ?>
+        <?php comments_template(); ?>
     </div>
 
 </div><!-- end section -->	
