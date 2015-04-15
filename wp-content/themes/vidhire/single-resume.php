@@ -1617,7 +1617,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                                 //RRR
                                 /* Shortcode Chart for Reference Request Responses */
-                                echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#000"][su_note note_color="#FFF4EA" text_color="#000000" radius="0"]
+                                echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#993300"][su_note note_color="#FFF4EA" text_color="#000000" radius="0"]
                                     [su_row][su_column size="3/4"]
                                     <h2>Productivity</h2>
                                     [su_progress_bar style="thin" percent="' . $productivity_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $productivity_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
