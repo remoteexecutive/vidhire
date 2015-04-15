@@ -280,6 +280,7 @@ global $app_abbr;
             <?php } //end resume_id if  ?>            
             <?php } //end resume_id foreach   ?>
 
+                    
             <div style="display:none">
         <?php
         /* For Status Tags */

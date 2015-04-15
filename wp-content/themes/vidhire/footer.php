@@ -861,5 +861,3 @@ wp_enqueue_script('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.
         }
     };
 </script>
-
-

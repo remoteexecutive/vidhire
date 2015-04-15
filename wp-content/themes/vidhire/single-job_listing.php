@@ -5,6 +5,7 @@
     echo "&nbsp;";
     echo do_shortcode('[su_button url="jrchange me)" style="glass" background="#003de6" color="#ffffff" size="1" radius="round" icon="icon: envelope-o" icon_color="#ffffff"]<strong>Email</strong>[/su_button]');
 ?>
+   
 </div>    
 <div class="section single">
     <?php do_action('appthemes_notices'); ?>

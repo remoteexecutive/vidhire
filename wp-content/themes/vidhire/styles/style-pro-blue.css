@@ -23,9 +23,9 @@ body {
 #header {	
     /*border-top: 1px solid rgba(255,255,255,0.1);*/
     /*background: #335588 url(../images/160-dark-blue.png) repeat-x bottom;*/
-    background: url(../images/vidhire_header_background.jpg) no-repeat;
-    background-position-y: 600%;
-    background-position-x: -8.7%;
+    background: url(../images/vidhire_header_background.jpg) no-repeat center;
+    //background-position-y: 600%;
+    //background-position-x: -8.7%;
     height: 150px;
 }
 #header .inner {
@@ -36,6 +36,7 @@ body {
 #header .logo_wrap {
     width: 100%;
 }
+
 #logo {
     color: #fff;
     padding-right: 20px;

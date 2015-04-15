@@ -1611,7 +1611,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                  $total_attitude + 
                                                  $total_dependability + 
                                                  $total_team_player +
-                                                 $total_learning_speed +
+                                                 $total_learning_speed + 
                                                  $total_flexibility +
                                                  $total_creativity) / (7 * $total_divider),1,PHP_ROUND_HALF_ODD)  * 20;
 
@@ -1918,5 +1918,6 @@ endif;
 else :
     if (get_option('jr_show_sidebar') !== 'no') : get_sidebar('resume');
     endif; 
-endif; 
+endif;
+
 
