@@ -1,5 +1,4 @@
 <?php
-
 /**
  * JobRoller Resume form
  * Function outputs the resume submit form

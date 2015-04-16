@@ -283,7 +283,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 //echo '<dt class="skype">' . __('Skype', APP_TD) . ':</dt><dd>'
                                     echo __('Skype', APP_TD) . ': ';
                                 ?>											
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a href="<?php echo 'skype:<strong>' . $contact_details['skype'] . '</strong>'; ?>"><!--img height="20" weight="20" src="<?php bloginfo('template_url') ?>/images/social-skype-button-blue-icon.png" /--><?php echo $contact_details['skype']; ?></a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <a href="<?php echo 'skype:<strong>' . $contact_details['skype'] . '</strong>'; ?>"><!--img height="20" weight="20" src="<?php bloginfo('template_url') ?>/images/social-skype-button-blue-icon.png" /--><?php echo $contact_details['skype']; ?></a>
 
 
                                 <!--script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script-->
@@ -336,20 +336,14 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     <?php do_action('resume_main_section', $post); ?>
 
                     <?php appthemes_before_post_content(); ?>
-                    <!--
-                    <h2 class="resume_section_heading"><span><?php _e('Objective', APP_TD); ?></span></h2>
-                    <div class="resume_section summary">
-                    <?php the_content(); ?>
-                    </div>
-                    <div class="clear"></div>
-                    -->
+
                     <?php appthemes_after_post_content(); ?>
 
                     <?php
                     $display_sections = array(
                         'resume_specialities' => __('Skills', APP_TD),
-                        //'skills' => __('Skills', APP_TD),
-                        //'resume_languages' => __('Spoken Languages', APP_TD),
+                        //'skills' => __('Skills', APP_TD),                       
+//'resume_languages' => __('Spoken Languages', APP_TD),
                         'education' => __('Education', APP_TD),
                         'experience' => __('Career Map', APP_TD),
                             /* 'resume_groups' => __('Groups &amp; Associations', APP_TD) */
@@ -361,19 +355,116 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                             case "experience" :
                                 ?>
-                                <!--				
-                        <h2 class="resume_section_heading"><span><?php echo $section; ?></span></h2>
-                                                                <div class="resume_section">
-                                <?php echo wpautop(wptexturize(get_post_meta($post->ID, '_experience', true))); ?>
-                                                                </div>
-                                                                <div class="clear"></div>
-                                -->				
+                               	
                                 <div class="experience">
-
-                                    <h2 class="career-map-heading"><span><?php echo $section; ?></span></h2>
-
-
-                                    <table class="career-map-table"> 
+                                    <?php 
+                                    
+                                    if (get_post_meta($post->ID, 'company_1_position', true) != "") { 
+                                                $company_1_position = '<td><strong>'.wptexturize(get_post_meta($post->ID, 'company_1_position', true)).'</strong></td>';
+                                                $company_1_start_date = '<td>'.date_format(date_create(get_post_meta($post->ID, 'company_1_start_date', true)), "M d Y").'</td>';
+                                                $company_1_end_date = '<td>'.date_format(date_create(get_post_meta($post->ID, 'company_1_end_date', true)), "M d Y").'</td>';
+                                                $company_1_job_type = '<td>'.wptexturize(get_post_meta($post->ID, 'company_1_job_type', true)).'</td>';
+                                                $company_1_company = '<td>'.wptexturize(get_post_meta($post->ID, 'company_1_company', true)).'</td>';
+                                                $company_1_city = '<td>'.wptexturize(get_post_meta($post->ID, 'company_1_city', true)).'</td>';
+                                                $company_1_country = '<td>'.wptexturize(get_post_meta($post->ID, 'company_1_country', true)).'</td>';
+                                                $company_1_reason_for_leaving = '<td>'.wptexturize(get_post_meta($post->ID, 'company_1_reason_for_leaving', true)).'</td>';
+                                                $company_1_starting_salary = '<td class="user_salary"><strong>'.wptexturize(get_post_meta($post->ID, 'company_1_starting_salary', true)).'</strong>&nbsp;'.$currency.'</td>';
+                                                $company_1_final_salary = '<td class="user_salary"><strong>'.wptexturize(get_post_meta($post->ID, 'company_1_final_salary', true)).'</strong>&nbsp;'.$currency.'</td>';
+                                                $company_1_salary_type = '<td class="user_salary">'.wptexturize(get_post_meta($post->ID, 'company_1_salary_type', true)).'</td>';
+                                                } 
+                                            if (get_post_meta($post->ID, 'company_2_position', true) != "") { 
+                                                $company_2_position = '<td><strong>'.wptexturize(get_post_meta($post->ID, 'company_2_position', true)).'</strong></td>';
+                                                $company_2_start_date = '<td>'.date_format(date_create(get_post_meta($post->ID, 'company_2_start_date', true)), "M d Y").'</td>';
+                                                $company_2_end_date = '<td>'.date_format(date_create(get_post_meta($post->ID, 'company_2_end_date', true)), "M d Y").'</td>';
+                                                $company_2_job_type = '<td>'.wptexturize(get_post_meta($post->ID, 'company_2_job_type', true)).'</td>';
+                                                $company_2_company = '<td>'.wptexturize(get_post_meta($post->ID, 'company_2_company', true)).'</td>';
+                                                $company_2_city = '<td>'.wptexturize(get_post_meta($post->ID, 'company_2_city', true)).'</td>';
+                                                $company_2_country = '<td>'.wptexturize(get_post_meta($post->ID, 'company_2_country', true)).'</td>';
+                                                $company_2_reason_for_leaving = '<td>'.wptexturize(get_post_meta($post->ID, 'company_2_reason_for_leaving', true)).'</td>';
+                                                $company_2_starting_salary = '<td class="user_salary"><strong>'.wptexturize(get_post_meta($post->ID, 'company_2_starting_salary', true)).'</strong>&nbsp;'.$currency.'</td>';
+                                                $company_2_final_salary = '<td class="user_salary"><strong>'.wptexturize(get_post_meta($post->ID, 'company_2_final_salary', true)).'</strong>&nbsp;'.$currency.'</td>';
+                                                $company_2_salary_type = '<td class="user_salary">'.wptexturize(get_post_meta($post->ID, 'company_2_salary_type', true)).'</td>';
+                                            } 
+                                            if (get_post_meta($post->ID, 'company_3_position', true) != "") { 
+                                                $company_3_position = '<td><strong>'.wptexturize(get_post_meta($post->ID, 'company_3_position', true)).'</strong></td>';
+                                                $company_3_start_date = '<td>'.date_format(date_create(get_post_meta($post->ID, 'company_3_start_date', true)), "M d Y").'</td>';
+                                                $company_3_end_date = '<td>'.date_format(date_create(get_post_meta($post->ID, 'company_3_end_date', true)), "M d Y").'</td>';
+                                                $company_3_job_type = '<td>'.wptexturize(get_post_meta($post->ID, 'company_3_job_type', true)).'</td>';
+                                                $company_3_company = '<td>'.wptexturize(get_post_meta($post->ID, 'company_3_company', true)).'</td>';
+                                                $company_3_city = '<td>'.wptexturize(get_post_meta($post->ID, 'company_3_city', true)).'</td>';
+                                                $company_3_country = '<td>'.wptexturize(get_post_meta($post->ID, 'company_3_country', true)).'</td>';
+                                                $company_3_reason_for_leaving = '<td>'.wptexturize(get_post_meta($post->ID, 'company_3_reason_for_leaving', true)).'</td>';
+                                                $company_3_starting_salary = '<td class="user_salary"><strong>'.wptexturize(get_post_meta($post->ID, 'company_3_starting_salary', true)).'</strong>&nbsp;'.$currency.'</td>';
+                                                $company_3_final_salary = '<td class="user_salary"><strong>'.wptexturize(get_post_meta($post->ID, 'company_3_final_salary', true)).'</strong>&nbsp;'.$currency.'</td>';
+                                                $company_3_salary_type = '<td class="user_salary">'.wptexturize(get_post_meta($post->ID, 'company_3_salary_type', true)).'</td>';
+                                            } 
+                                    
+                                         if (current_user_can('can_submit_job')) { 
+                                            
+                                             if (get_post_meta($post->ID, 'company_1_position', true) != "") { 
+                                                    $reference_name_1 = '<td class="reference_name"><strong>'.wptexturize(get_post_meta($post->ID, 'reference_name_1', true)).'</strong></td>';
+                                                    $reference_position_1 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_position_1', true)).'</td>';
+                                                    $reference_email_1 = '<td><a class="noscroll reference_email" href="#">'.wptexturize(get_post_meta($post->ID, 'reference_email_1', true)).'</a></td>';
+                                                    $reference_phone_number_1 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_phone_number_1', true)).'</td>';
+                                                    $reference_additional_info_1 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_additional_info_1', true)).'</td>';
+                                                    $email_reference_1 = '<td style="border: 0px;"><input type="button" class="email_reference" value="Request Reference" /></td>';
+                                                } 
+                                                if (get_post_meta($post->ID, 'company_2_position', true) != "") { 
+                                                    $reference_name_2 = '<td class="reference_name"><strong>'.wptexturize(get_post_meta($post->ID, 'reference_name_2', true)).'</strong></td>';
+                                                    $reference_position_2 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_position_2', true)).'</td>';
+                                                    $reference_email_2 = '<td><a class="noscroll reference_email" href="#">'.wptexturize(get_post_meta($post->ID, 'reference_email_2', true)).'</a></td>';
+                                                    $reference_phone_number_2 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_phone_number_2', true)).'</td>';
+                                                    $reference_additional_info_2 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_additional_info_2', true)).'</td>';
+                                                    $email_reference_2 = '<td style="border: 0px;"><input type="button" class="email_reference" value="Request Reference" /></td>';
+                                                } 
+                                                if (get_post_meta($post->ID, 'company_3_position', true) != "") { 
+                                                    $reference_name_3 = '<td class="reference_name"><strong>'.wptexturize(get_post_meta($post->ID, 'reference_name_3', true)).'</strong></td>';
+                                                    $reference_position_3 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_position_3', true)).'</td>';
+                                                    $reference_email_3 = '<td><a class="noscroll reference_email" href="#">'.wptexturize(get_post_meta($post->ID, 'reference_email_3', true)).'</a></td>';
+                                                    $reference_phone_number_3 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_phone_number_3', true)).'</td>';
+                                                    $reference_additional_info_3 = '<td>'.wptexturize(get_post_meta($post->ID, 'reference_additional_info_3', true)).'</td>';
+                                                    $email_reference_3 = '<td style="border: 0px;"><input type="button" class="email_reference" value="Request Reference" /></td>';
+                                                } 
+                                             
+                                             $reference_name =
+                                             '<tr>
+                                                <td nowrap><strong>Reference Name</strong></td>
+                                                '.$reference_name_1.$reference_name_2.$reference_name_3.'
+                                             </tr>';
+                                             $reference_position = 
+                                            '<tr>
+                                                <td nowrap><strong>Position/Title</strong></td>
+                                                '.$reference_position_1.$reference_position_2.$reference_position_3.';
+                                            </tr>';
+                                             
+                                             $reference_email = 
+                                            '<tr>
+                                                <td nowrap><strong>Reference Email</strong></td>
+                                                '.$reference_email_1.$reference_email_2.$reference_email_3.'
+                                            </tr>';
+                                             
+                                            $reference_phone_number = 
+                                            '<tr>
+                                                <td nowrap><strong>Reference Phone</strong></td>
+                                                '.$reference_phone_number_1.$reference_phone_number_2.$reference_phone_number_3.'
+                                            </tr>';
+                                            
+                                            $reference_notes =
+                                            '<tr>
+                                                <td nowrap><strong>Notes</strong></td>
+                                                '.$reference_additional_info_1.$reference_additional_info_2.$reference_additional_info_3.'
+                                            </tr>';
+                                            $email_reference =
+                                            '<tr class="request_reference_button_holder">
+                                                <td nowrap style="border: 0px;background: transparent;">&nbsp;</td>
+                                                '.$email_reference_1.$email_reference_2.$email_reference_3.'
+                                            </tr>';
+                                        }
+                                            
+                                    
+                                    echo do_shortcode('[su_shadow style="simple"][su_box title="Career Map" style="glass" box_color="#DE6F00"]
+                                       [su_note note_color="#FCEDDE" radius="5"]
+                                       <table class="career-map-table"> 
                                         <tr>
                                             <td class="carreer-heading">&nbsp;</td>
                                             <td class="carreer-heading">Most Recent Job</td>
@@ -382,103 +473,38 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                         </tr>
                                         <tr>
                                             <td nowrap><strong>Position/Title</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		
-                                                <td><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_1_position', true)); ?></strong></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	
-                                                <td><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_2_position', true)); ?></strong></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	
-                                                <td><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_3_position', true)); ?></strong></td>
-                                            <?php } ?>
+                                            '.$company_1_position.$company_2_position.$company_3_position.'
                                         </tr>
 
                                         <tr>
                                             <td nowrap><strong>Start Date</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		
-                                                <td><?php echo date_format(date_create(get_post_meta($post->ID, 'company_1_start_date', true)), "M d Y"); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	
-                                                <td><?php echo date_format(date_create(get_post_meta($post->ID, 'company_2_start_date', true)), "M d Y"); ?></td>
-                                            <?php } ?>     
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  	                   
-                                                <td><?php echo date_format(date_create(get_post_meta($post->ID, 'company_3_start_date', true)), "M d Y"); ?></td>
-                                            <?php } ?>
+                                            '.$company_1_start_date.$company_2_start_date.$company_3_start_date.'
                                         </tr>
                                         <tr>
                                             <td nowrap><strong>End Date</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>			
-                                                <td><?php echo date_format(date_create(get_post_meta($post->ID, 'company_1_end_date', true)), "M d Y"); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>		
-                                                <td><?php echo date_format(date_create(get_post_meta($post->ID, 'company_2_end_date', true)), "M d Y"); ?></td>
-                                            <?php } ?>     
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  	                   
-                                                <td><?php echo date_format(date_create(get_post_meta($post->ID, 'company_3_end_date', true)), "M d Y"); ?></td>
-                                            <?php } ?>     
+                                             '.$company_1_end_date.$company_2_end_date.$company_3_end_date.'
                                         </tr>
 
                                         <tr>
                                             <td nowrap><strong>Job Type</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>			
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_1_job_type', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>		
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_2_job_type', true)); ?></td>
-                                            <?php } ?>     
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  	
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_3_job_type', true)); ?></td>
-                                            <?php } ?>
+                                            '.$company_1_job_type.$company_2_job_type.$company_3_job_type.'
                                         </tr>
 
                                         <tr>
                                             <td nowrap><strong>Company</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>			
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_1_company', true)); ?></td>
-                                            <?php } ?>     
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>		
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_2_company', true)); ?></td>
-                                            <?php } ?>     
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  	                   
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_3_company', true)); ?></td>
-                                            <?php } ?>     
+                                            '.$company_1_company.$company_2_company.$company_3_company.'
                                         </tr>
                                         <tr>
                                             <td nowrap><strong>City</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>			
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_1_city', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>		
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_2_city', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  	                   
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_3_city', true)); ?></td>
-                                            <?php } ?>     
+                                            '.$company_1_city.$company_2_city.$company_3_city.'
                                         </tr>
                                         <tr>
                                             <td nowrap><strong>Country</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_1_country', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_2_country', true)); ?></td>
-                                            <?php } ?>       
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	                     
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_3_country', true)); ?></td>
-                                            <?php } ?>       
+                                            '.$company_1_country.$company_2_country.$company_3_country.'
                                         </tr>
-
                                         <tr>
                                             <td nowrap><strong>Reason for Leaving</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_1_reason_for_leaving', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_2_reason_for_leaving', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	                     
-                                                <td><?php echo wptexturize(get_post_meta($post->ID, 'company_3_reason_for_leaving', true)); ?></td>
-                                            <?php } ?>
+                                            '.$company_1_reason_for_leaving.$company_2_reason_for_leaving.$company_3_reason_for_leaving.'
                                         </tr>
 
                                         <tr class="divider">
@@ -490,42 +516,17 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                                         <tr>
                                             <td nowrap><strong>Starting Salary</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                <td class="user_salary"><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_1_starting_salary', true)); ?></strong>&nbsp;<?php echo $currency; ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                <td class="user_salary"><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_2_starting_salary', true)); ?></strong>&nbsp;<?php echo $currency; ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	         
-                                                <td class="user_salary"><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_3_starting_salary', true)); ?></strong>&nbsp;<?php echo $currency; ?></td>
-                                            <?php } ?>
-
+                                            '.$company_1_starting_salary.$company_2_starting_salary.$company_3_starting_salary.'
                                         </tr>
 
                                         <tr>
                                             <td nowrap><strong>Final Salary</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                <td class="user_salary"><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_1_final_salary', true)); ?></strong>&nbsp;<?php echo $currency; ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                <td class="user_salary"><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_2_final_salary', true)); ?></strong>&nbsp;<?php echo $currency; ?></td>
-                                            <?php } ?>         
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                <td class="user_salary"><strong><?php echo wptexturize(get_post_meta($post->ID, 'company_3_final_salary', true)); ?></strong>&nbsp;<?php echo $currency; ?></td>
-                                            <?php } ?>
+                                            '.$company_1_final_salary.$company_2_final_salary.$company_3_final_salary.'
                                         </tr>
 
                                         <tr>
                                             <td nowrap><strong>Salary Type</strong></td>
-                                            <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                <td class="user_salary"><?php echo wptexturize(get_post_meta($post->ID, 'company_1_salary_type', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                <td class="user_salary"><?php echo wptexturize(get_post_meta($post->ID, 'company_2_salary_type', true)); ?></td>
-                                            <?php } ?>
-                                            <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                <td class="user_salary"><?php echo wptexturize(get_post_meta($post->ID, 'company_3_salary_type', true)); ?></td>
-                                            <?php } ?> 
+                                            '.$company_1_salary_type.$company_2_salary_type.$company_3_salary_type.'
                                         </tr>
                                         <tr class="divider">
                                             <td>&nbsp;</td>
@@ -533,92 +534,13 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
                                         </tr>	
-                                        <?php if (current_user_can('can_submit_job')) { ?>
-                                            <tr>
-                                                <td nowrap><strong>Reference Name</strong></td>
-                                                <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		 
-                                                    <td class="reference_name"><strong><?php echo wptexturize(get_post_meta($post->ID, 'reference_name_1', true)); ?></strong></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	 
-                                                    <td class="reference_name"><strong><?php echo wptexturize(get_post_meta($post->ID, 'reference_name_2', true)); ?></strong></td>  
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                    <td class="reference_name"><strong><?php echo wptexturize(get_post_meta($post->ID, 'reference_name_3', true)); ?></strong></td>
-                                                <?php } ?>
-                                            </tr>
-
-                                            <tr>
-                                                <td nowrap><strong>Position/Title</strong></td>
-                                                <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_position_1', true)); ?></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_position_2', true)); ?></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_position_3', true)); ?></td>
-                                                <?php } ?>
-                                            </tr>
-
-                                            <tr>
-                                                <td nowrap><strong>Reference Email</strong></td>
-                                                <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                    <td>
-                                                        <a class="noscroll reference_email" href="#"><?php echo wptexturize(get_post_meta($post->ID, 'reference_email_1', true)); ?></a>
-                                                    </td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                    <td>
-                                                        <a class="noscroll reference_email" href="#"><?php echo wptexturize(get_post_meta($post->ID, 'reference_email_2', true)); ?></a>
-                                                    </td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                    <td>
-                                                        <a class="noscroll reference_email" href="#"><?php echo wptexturize(get_post_meta($post->ID, 'reference_email_3', true)); ?></a>
-                                                    </td>
-                                                <?php } ?>
-                                            </tr>
-
-                                            <tr>
-                                                <td nowrap><strong>Reference Phone</strong></td>
-                                                <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_phone_number_1', true)); ?></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_phone_number_2', true)); ?></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	    
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_phone_number_3', true)); ?></td>
-                                                <?php } ?>
-                                            </tr>
-
-                                            <tr>
-                                                <td nowrap><strong>Notes</strong></td>
-                                                <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_additional_info_1', true)); ?></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_additional_info_2', true)); ?></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                    <td><?php echo wptexturize(get_post_meta($post->ID, 'reference_additional_info_3', true)); ?></td>
-                                                <?php } ?>
-                                            </tr>
-
-                                            <tr class="request_reference_button_holder">
-                                                <td nowrap style="border: 0px;background: transparent;">&nbsp;</td>
-                                                <?php if (get_post_meta($post->ID, 'company_1_position', true) != "") { ?>		  
-                                                    <td style="border: 0px;"><input type="button" class="email_reference" value="Request Reference" /></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_2_position', true) != "") { ?>	  
-                                                    <td style="border: 0px;"><input type="button" class="email_reference" value="Request Reference" /></td>
-                                                <?php } ?>
-                                                <?php if (get_post_meta($post->ID, 'company_3_position', true) != "") { ?>	  
-                                                    <td style="border: 0px;"><input type="button" class="email_reference" value="Request Reference" /></td>
-                                                <?php } ?>
-                                            </tr>
-                                        <?php } ?>
+                                        '.$reference_name.$reference_position.$reference_email.$reference_phone_number.$reference_notes.$email_reference.'
                                     </table> 
+                                       [/su_note]
+                                       [/su_box]
+                                       [/su_shadow]');
+                                    
+                                    ?>
                                     <div class="reference-dialog">
                                         <div>
                                             <label for="email-address">To:</label>
@@ -686,7 +608,8 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                                         </div>
                                     </div>
-                                </div>
+                                    
+                                </div><!--End Experience div-->
 
                                 <br />
 
@@ -790,15 +713,10 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 break;
                             case "education" :
                                 ?>
-                                <!--
-                                <h2 class="resume_section_heading"><span><?php echo $section; ?></span></h2>
-                                <div class="resume_section">
-                                <?php echo wpautop(wptexturize(get_post_meta($post->ID, '_education', true))); ?>
-                                </div>
-                                -->
+                                
                                 <div class="attached_documents">
-                                    <h2 class="attached_documents_header"><span>Resume &AMP; Documents</span></h2>
-                                    <?php
+                                    <?php 
+                                    
                                     $resume = get_children(array(
                                         'post_parent' => $post->ID,
                                         'post_type' => 'attachment',
@@ -807,23 +725,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                         'post_mime_type' => array('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'),
                                         'order' => 'DESC'
                                     ));
-                                    ?>
-
-
-                                    <?php
-                                    foreach ($resume as $attachment_id => $attachment) {
-                                        if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) {
-                                            //echo '<tr><td>'.wp_get_attachment_link($attachment_id) . '</td><td><a href="' . get_delete_post_link($attachment_id, '', true) . '">Delete</a></td></tr>';
-                                            echo do_shortcode('[embeddoc url="' . wp_get_attachment_url($attachment_id) . '" viewer="microsoft"]');
-                                        } else {
-                                            echo wp_get_attachment_link($attachment_id);
-                                        }
-                                    }
-                                    ?>
-
-
-                                    <table>
-                                        <?php
+                                    
                                         $attachments = get_children(array(
                                             'post_parent' => $post->ID,
                                             'post_type' => 'attachment',
@@ -832,20 +734,32 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                             'post_mime_type' => array('image/png', 'image/jpg', 'image/gif'),
                                             'order' => 'DESC'
                                         ));
-                                        ?>
-
-
-                                        <?php
+                                    
+                                    foreach ($resume as $attachment_id => $attachment) {
+                                        if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) {
+                                            //echo '<tr><td>'.wp_get_attachment_link($attachment_id) . '</td><td><a href="' . get_delete_post_link($attachment_id, '', true) . '">Delete</a></td></tr>';
+                                            $embeddoc = do_shortcode('[embeddoc url="' . wp_get_attachment_url($attachment_id) . '" viewer="microsoft"]');
+                                        } else {
+                                            $embeddoc = wp_get_attachment_link($attachment_id);
+                                        }
+                                    }
+                                    
                                         foreach ($attachments as $attachment_id => $attachment) {
                                             if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) {
-                                                echo '<tr><td>' . wp_get_attachment_link($attachment_id) . '</td></tr>';
+                                                $attached_doc = '<tr><td>' . wp_get_attachment_link($attachment_id) . '</td></tr>';
                                                 //echo do_shortcode('[embeddoc url="'.wp_get_attachment_url($attachment_id).'" viewer="microsoft"]'); 
                                             } else {
-                                                echo wp_get_attachment_link($attachment_id);
+                                                $attached_doc = wp_get_attachment_link($attachment_id);
                                             }
                                         }
-                                        ?>
-                                    </table>
+                                    
+                                    
+                                    echo do_shortcode('[su_shadow style="simple"][su_box title="Resume & Documents" style="glass" box_color="#8F4700"]
+                                        [su_note note_color="#FCEDDE" radius="5"]'.$embeddoc.'<br />'.$attached_doc.'
+                                        [/su_note]
+                                        [/su_box]
+                                        [/su_shadow]');
+                                    ?>
                                 </div>
                                 <br />
 
@@ -869,7 +783,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     </div>
                                     <div class="clear"></div>
 
-                                    <?php
+                            <?php
                                 endif;
                                 break;
                             default :
@@ -878,7 +792,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 if ($term) :
                                     ?>
                                     <div class="skills-container">
+                                        <!--
                                         <h2 class="skills-heading"><span><?php echo $section; ?></span></h2>
+                                        -->
                                         <div class="skills-text">
                                             <?php
                                             $terms_array = array();
@@ -889,30 +805,49 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                     $terms_array[] = $t->name;
                                                 endif;
                                             endforeach;
-                                            echo '<ul class="terms"><li class="tag">' . implode('</li><li>', $terms_array) . '</li></ul>';
-                                            //echo implode('', $terms_array);
+                                            //echo '<ul class="terms"><li class="tag">' . implode('</li><li>', $terms_array) . '</li></ul>';
+
+                                            echo do_shortcode('[su_shadow style="simple"]
+                                                [su_box title="' . $section . '" style="glass" box_color="#1F5802"]
+                                                [su_note note_color="#B8F5D4" radius="5"]
+                                                <ul class="terms"><li class="tag">' . implode('</li><li>', $terms_array) . '</li></ul>
+                                                [/su_note]
+                                                [/su_box]
+                                                [/su_shadow]');
                                             ?>
                                         </div>
                                     </div>
                                     <div class="clear"></div>
                                     <br />
+
                                     <div class="degree-section">
+                                        <!--
                                         <h2 class="degree-section-heading"><span>Certificate, Diploma or Degree</span></h2>
+                                        -->
                                         <div class="degree-section-text-section">
+                                            <?php
+                                            echo do_shortcode('[su_shadow style="simple"]
+                                                [su_box title="Certificate, Diploma or Degree" style="glass" box_color="#6B0359"]
+                                                [su_note note_color="#DCC9D8" radius="5"]
                                             <ul>
-                                                <li><?php echo wptexturize(get_post_meta($post->ID, 'degree', true)) ?>,</li>
-                                                <li><?php echo wptexturize(get_post_meta($post->ID, 'institution', true)); ?>,</li>
-                                                <li><?php echo wptexturize(get_post_meta($post->ID, 'degree_date_issued', true)); ?></li>
+                                                <li>' . wptexturize(get_post_meta($post->ID, 'degree', true)) . ',</li>
+                                                <li>' . wptexturize(get_post_meta($post->ID, 'institution', true)) . ',</li>
+                                                <li>' . wptexturize(get_post_meta($post->ID, 'degree_date_issued', true)) . '</li>
                                             </ul>
                                             <ul>
                                                 <li>
-                                                    <label>Last year's overall average: </label><?php echo wptexturize(get_post_meta($post->ID, 'overall_average', true)); ?>
+                                                    <label>Last year\'s overall average: </label>' . wptexturize(get_post_meta($post->ID, 'overall_average', true)) . '
                                                 </li>
                                                 <li>
-                                                    <label>Transcripts:</label>
-                                                    <?php echo wptexturize(get_post_meta($post->ID, 'transcripts', true)); ?>
+                                                    <label>Transcripts:</label>' .
+                                                    wptexturize(get_post_meta($post->ID, 'transcripts', true)) . '
                                                 </li>
                                             </ul>
+                                                [/su_note]
+                                                [/su_box]
+                                                [/su_shadow]');
+                                            ?>
+
                                         </div>
                                     </div>
                                     <div class="clear"></div>
@@ -925,7 +860,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                     endforeach;
                     ?>
-                <?php endif; ?>
+        <?php endif; ?>
 
                 <div style="display:none" class="test-results" style="height: 300px;">
 
@@ -946,7 +881,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 ?>  
                                 <h2 class="resume_section_heading"><span><?php echo $test_title; ?></span></h2>
                                 <div class="resume_section">
-                                    <?php echo wptexturize(get_post_meta($post->ID, 'typing_test', true)); ?>
+                    <?php echo wptexturize(get_post_meta($post->ID, 'typing_test', true)); ?>
                                 </div>
                                 <div class="clear"></div>
                                 <?php
@@ -955,7 +890,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 ?>
                                 <h2 class="resume_section_heading"><span><?php echo $test_title; ?></span></h2>
                                 <div class="resume_section">
-                                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'math_test', true))); ?> 
+                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'math_test', true))); ?> 
                                 </div>
                                 <div class="clear"></div>  
                                 <?php
@@ -964,7 +899,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 ?>
                                 <h2 class="resume_section_heading"><span><?php echo $test_title; ?></span></h2>
                                 <div class="resume_section">
-                                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'english_test', true))); ?>         
+                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'english_test', true))); ?>         
                                 </div>
                                 <div class="clear"></div>   
                                 <?php
@@ -973,7 +908,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 ?>
                                 <h2 class="resume_section_heading"><span><?php echo $test_title; ?></span></h2>
                                 <div class="resume_section">
-                                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'memory_test', true))); ?>            
+                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'memory_test', true))); ?>            
                                 </div>
                                 <div class="clear"></div>            
                                 <?php
@@ -982,7 +917,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 ?>
                                 <h2 class="resume_section_heading"><span><?php echo $test_title; ?></span></h2>
                                 <div class="resume_section">
-                                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'internet_speed', true))); ?>           
+                    <?php echo wpautop(wptexturize(get_post_meta($post->ID, 'internet_speed', true))); ?>           
                                 </div>
                                 <div class="clear"></div>  
                                 <?php
@@ -1021,7 +956,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     <h2 class="video-interview-header">Video Interview</h2>
                                     <iframe height="355" width="650" src="<?php echo wptexturize(get_post_meta($post->ID, 'interview_video', true)); ?>"></iframe>
                                 </div>
-                                <?php if (current_user_can('can_submit_job')) { ?>
+                    <?php if (current_user_can('can_submit_job')) { ?>
                                     <form class="video-evaluation-form">
 
                                         <h2 class="video-evaluation-heading" style="text-align:left;"><span>Video Evaluation of <?php the_title(); ?></span></h2>
@@ -1056,7 +991,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1077,7 +1012,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1098,7 +1033,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1118,7 +1053,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1137,7 +1072,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1156,7 +1091,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1200,7 +1135,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     $optional_boost_score = $get_video_evaluation->bonus_score * 20;
                                     $video_evaluation_total = round(($get_video_evaluation->video_evaluation_score / 6 ) * 20);
 
-                                    
+
                                     //EE
                                     /* Shortcode Chart for Video Evaluation */
                                     echo do_shortcode('[su_shadow style="simple"][su_box title="Video Evaluation" style="glass" box_color="#000000"][su_note note_color="#000000" radius="5"]
@@ -1241,7 +1176,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
                                     <div id="map_wrap" style="width:100%;height:250px;"><div id="geolocation-map" style="width:100%;height:250px;"></div></div>
                                 </div>
-                                <?php if (current_user_can('can_submit_job')) { ?>
+                    <?php if (current_user_can('can_submit_job')) { ?>
 
                                     <!--
                                     <iframe height="355" width="658" src="https://docs.google.com/spreadsheets/d/1CRIj5PYzwEnQySpBnMNw6sIqRTA2NiWQb0ieXm0nxDk/edit#gid=0"></iframe>
@@ -1281,7 +1216,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1302,7 +1237,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1323,7 +1258,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1343,7 +1278,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1362,7 +1297,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1381,7 +1316,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>	
@@ -1400,7 +1335,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                                                 <?php } else { ?>
                                                                     <option><?php echo $i; ?></option>
                                                                 <?php } ?>
-                                                            <?php } ?>
+                        <?php } ?>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -1531,7 +1466,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                         $creativity .= ',' . $chart_data['creativity'];
 
                                         /* For Getting Text Rating */
-                                       /* For Getting Text Rating */
+                                        /* For Getting Text Rating */
                                         $productivity_rating_2 = get_rating($chart_data['performance']);
                                         $attitude_rating_2 = get_rating($chart_data['attitude']);
                                         $dependability_rating_2 = get_rating($chart_data['dependability']);
@@ -1539,7 +1474,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                         $learning_speed_rating_2 = get_rating($chart_data['learning_speed']);
                                         $flexibility_rating_2 = get_rating($chart_data['flexibility']);
                                         $creativity_rating_2 = get_rating($chart_data['creativity']);
-                                        
+
                                         $productivity_reference_2 = $chart_data['performance'] * 20;
                                         $attitude_reference_2 = $chart_data['attitude'] * 20;
                                         $dependability_reference_2 = $chart_data['dependability'] * 20;
@@ -1566,7 +1501,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                         $learning_speed .= ',' . $chart_data['learning_speed'];
                                         $flexibility .= ',' . $chart_data['flexibility'];
                                         $creativity .= ',' . $chart_data['creativity'];
-                                        
+
                                         /* For Getting Text Rating */
                                         $productivity_rating_3 = get_rating($chart_data['performance']);
                                         $attitude_rating_3 = get_rating($chart_data['attitude']);
@@ -1600,24 +1535,24 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                 //echo do_shortcode('[easychart type="vertbar" height="400" width="650" title="" grid="false" groupnames="Productivity,Attitude,Dependability,Team Player,Learning Speed,Flexibility,Creativity" valuenames="' . $reference_1 . ',' . $reference_2 . ',' . $reference_3 . '" group1values="' . $performance . '" group2values="' . $attitude . '" group3values="' . $dependability . '" group4values="' . $team_player . '" group5values="' . $learning_speed . '" group6values="' . $flexibility . '" group7values="' . $creativity . '"]');
 
                                 /* Per Criteria Average */
-                                $average_productivity = round($total_productivity / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_attitude = round($total_attitude / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_dependability = round($total_dependability / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_team_player = round($total_team_player / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_learning_speed = round($total_learning_speed / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_flexibility = round($total_flexibility / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_creativity = round($total_creativity / $total_divider,1,PHP_ROUND_HALF_ODD) * 20;
-                                $average_final = round(($total_productivity + 
-                                                 $total_attitude + 
-                                                 $total_dependability + 
-                                                 $total_team_player +
-                                                 $total_learning_speed + 
-                                                 $total_flexibility +
-                                                 $total_creativity) / (7 * $total_divider),1,PHP_ROUND_HALF_ODD)  * 20;
+                                $average_productivity = round($total_productivity / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_attitude = round($total_attitude / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_dependability = round($total_dependability / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_team_player = round($total_team_player / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_learning_speed = round($total_learning_speed / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_flexibility = round($total_flexibility / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_creativity = round($total_creativity / $total_divider, 1, PHP_ROUND_HALF_ODD) * 20;
+                                $average_final = round(($total_productivity +
+                                                $total_attitude +
+                                                $total_dependability +
+                                                $total_team_player +
+                                                $total_learning_speed +
+                                                $total_flexibility +
+                                                $total_creativity) / (7 * $total_divider), 1, PHP_ROUND_HALF_ODD) * 20;
 
                                 //RRR
                                 /* Shortcode Chart for Reference Request Responses */
-                                echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#000"][su_note note_color="#FFF4EA" text_color="#000000" radius="0"]
+                                echo do_shortcode('[su_shadow style="simple"][su_box title="Reference Request Responses" style="glass" box_color="#993300"][su_note note_color="#FFF4EA" text_color="#000000" radius="0"]
                                     [su_row][su_column size="3/4"]
                                     <h2>Productivity</h2>
                                     [su_progress_bar style="thin" percent="' . $productivity_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $productivity_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
@@ -1631,9 +1566,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     [su_heading style="line-light" size="25"][/su_heading]
                                     [su_row][su_column size="3/4"]
                                     <h2>Attitude</h2>
-                                    [su_progress_bar style="thin" percent="' . $attitude_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$attitude_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $attitude_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$attitude_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $attitude_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$attitude_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $attitude_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $attitude_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $attitude_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $attitude_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $attitude_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $attitude_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
                                     [/su_column]
                                     [su_column size="1/4"]
                                     <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
@@ -1642,9 +1577,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     [su_heading style="line-light" size="25"][/su_heading]
                                     [su_row][su_column size="3/4"]
                                     <h2>Dependability</h2>
-                                    [su_progress_bar style="thin" percent="' . $dependability_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$dependability_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $dependability_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$dependability_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $dependability_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$dependability_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $dependability_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $dependability_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $dependability_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $dependability_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $dependability_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $dependability_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
                                     [/su_column]
                                     [su_column size="1/4"]
                                     <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
@@ -1653,9 +1588,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     [su_heading style="line-light" size="25"][/su_heading]
                                     [su_row][su_column size="3/4"]
                                     <h2>Team Player</h2>
-                                    [su_progress_bar style="thin" percent="' . $team_player_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$team_player_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $team_player_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$team_player_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $team_player_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$team_player_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $team_player_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $team_player_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $team_player_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $team_player_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $team_player_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $team_player_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
                                     [/su_column]
                                     [su_column size="1/4"]
                                     <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
@@ -1664,9 +1599,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     [su_heading style="line-light" size="25"][/su_heading]
                                     [su_row][su_column size="3/4"]
                                     <h2>Learning Speed</h2>
-                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$learning_speed_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$learning_speed_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$learning_speed_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $learning_speed_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $learning_speed_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $learning_speed_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $learning_speed_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
                                     [/su_column]
                                     [su_column size="1/4"]
                                     <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
@@ -1676,9 +1611,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     [su_heading style="line-light" size="25"][/su_heading]
                                     [su_row][su_column size="3/4"]
                                     <h2>Flexibility</h2>
-                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$flexibility_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$flexibility_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$flexibility_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $flexibility_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $flexibility_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $flexibility_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $flexibility_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
                                     [/su_column]
                                     [su_column size="1/4"]
                                     <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
@@ -1687,9 +1622,9 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     [su_heading style="line-light" size="25"][/su_heading]
                                     [su_row][su_column size="3/4"]
                                     <h2>Creativity</h2>
-                                    [su_progress_bar style="thin" percent="' . $creativity_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  ('.$creativity_rating_1.')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $creativity_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  ('.$creativity_rating_2.')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
-                                    [su_progress_bar style="thin" percent="' . $creativity_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  ('.$creativity_rating_3.')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $creativity_reference_1 . '" text="<strong>' . $reference_1 . '</strong>  (' . $creativity_rating_1 . ')" bar_color="#f0dbc9" fill_color="#820063" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $creativity_reference_2 . '" text="<strong>' . $reference_2 . '</strong>  (' . $creativity_rating_2 . ')" bar_color="#f0dbc9" fill_color="#040082" text_color="#000000"]
+                                    [su_progress_bar style="thin" percent="' . $creativity_reference_3 . '" text="<strong>' . $reference_3 . '</strong>  (' . $creativity_rating_3 . ')" bar_color="#f0dbc9" fill_color="#66bf04" text_color="#000000"]
                                     [/su_column]
                                     [su_column size="1/4"]
                                     <h3 style="text-align: center;"><span style="color: #919182;">Average</span></h3>
@@ -1705,7 +1640,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                                     &nbsp;
                                     [/su_column]
                                     [su_column size="1/4"]
-                                    [su_progress_pie percent="'.$average_final.'" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f1efb6" fill_color="#cd8803" text_color="#cd8803"]
+                                    [su_progress_pie percent="' . $average_final . '" before="<strong>" after="%</strong>" size="80" pie_width="40" text_size="20" pie_color="#f1efb6" fill_color="#cd8803" text_color="#cd8803"]
                                     [/su_column]
                                     [/su_row][/su_note][/su_box][/su_shadow]');
                                 ?>
@@ -1762,13 +1697,13 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     ?>
 
 
-                    <?php if (current_user_can('manage_options') || current_user_can('can_submit_job')) : ?>  
+        <?php if (current_user_can('manage_options') || current_user_can('can_submit_job')) : ?>  
                         <!--                 
                          <div class="internal-notes">
                              <h2 class="resume_section_heading"><span style="padding-left: 4px;"><?php echo __('Admin Notes', APP_TD) ?></span></h2>
                              <div class="resume_section" style="border-bottom: 0px solid rgb(204, 204, 204);">						
                                  <p>
-                        <?php echo wptexturize(get_post_meta($post->ID, 'internal_notes', true)); ?>
+            <?php echo wptexturize(get_post_meta($post->ID, 'internal_notes', true)); ?>
                                  </p>
                              </div>  
                          </div>
@@ -1792,19 +1727,19 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                             echo '<ul class="terms"><li>' . implode('</li><li>', $terms_array) . '</li></ul>';
                             ?>
 
-                                                                                                                                                                                        <div class="clear"></div>
+                                                                                                                                                                                                <div class="clear"></div>
 
-                        <?php endif; ?>   
+            <?php endif; ?>   
                             </div>
                         </div>
                         -->
 
                     <?php else : ?>    	                      
 
-                    <?php endif; ?>    
+        <?php endif; ?>    
 
                     <!--           
-                    <?php if (get_option('jr_ad_stats_all') == 'yes' && current_theme_supports('app-stats')) { ?><p class="stats"><?php appthemes_stats_counter($post->ID); ?></p> <?php } ?>
+        <?php if (get_option('jr_ad_stats_all') == 'yes' && current_theme_supports('app-stats')) { ?><p class="stats"><?php appthemes_stats_counter($post->ID); ?></p> <?php } ?>
                                                          
                                                          <div class="clear"></div>                      
                     -->  
@@ -1825,7 +1760,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                 </div>
 
 
-                <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
+        <?php if (get_the_author_meta('ID') == get_current_user_id() || current_user_can('manage_options')) : ?>
                     <!--
                     <p class="button edit_resume"><a href="<?php echo add_query_arg('edit', $post->ID, get_permalink(JR_Resume_Edit_Page::get_id())); ?>"><?php _e('Edit Resume&nbsp;&rarr;', APP_TD); ?></a></p>
                     -->
@@ -1835,7 +1770,7 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
                     </p>
 
 
-                <?php endif; ?>
+        <?php endif; ?>
 
 
             </div><!-- end section_content -->
@@ -1856,11 +1791,11 @@ $show_contact_form = (get_option('jr_resume_show_contact_form') == 'yes');
 
     <?php endif; ?>	
 
-    <?php appthemes_after_loop(); ?>
+<?php appthemes_after_loop(); ?>
 
     <div id="comment-tab">
         <!--?php comments_template('/theme-comments.php'); ?-->
-        <?php comments_template(); ?>
+<?php comments_template(); ?>
     </div>
 
 </div><!-- end section -->	
@@ -1918,6 +1853,5 @@ endif;
 else :
     if (get_option('jr_show_sidebar') !== 'no') : get_sidebar('resume');
     endif; 
-endif;
-
+endif; 
 
