@@ -121,8 +121,10 @@ div#content .inner {
 	border-radius: 6px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	background: #fbfbfb url(../images/style-pro-blue/pixel.png) repeat-y 690px;
+	/*background: #fbfbfb url(../images/style-pro-blue/pixel.png) repeat-y 690px;*/
+	background: blue url('http://vidhire.net/wp-content/uploads/2015/04/black_diagonal_stripes_seamless_background_pattern-grey.png') repeat;
 }
+
 	
 .section, #searchform {
 	margin: 0 0 20px;
